@@ -3,6 +3,8 @@ package christmas.View;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.OrderValidator;
 
+import java.util.Map;
+
 public class InputView {
     public int inputDate() {
         while (true) {
@@ -30,5 +32,13 @@ public class InputView {
             }
             System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
+    }
+
+    public void showOrderedMenu(Map<String, Integer> orderedMenu) {
+        System.out.println("<주문 메뉴>");
+        for (Map.Entry<String, Integer> entry : orderedMenu.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue() + "개");
+        }
+        System.out.println();
     }
 }
