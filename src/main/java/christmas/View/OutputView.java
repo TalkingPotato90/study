@@ -36,4 +36,10 @@ public class OutputView {
         System.out.println();
     }
 
+    public void showFinalPaymentAmount(int finalPaymentAmount) {
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.printf("%,d원%n", finalPaymentAmount);
+        System.out.println();
+    }
+
 }
