@@ -71,7 +71,18 @@ public class OrderValidator {
     }
 
     private static void validateTotalQuantity(String order){
+        String[] orders = order.split(",");
+        int totalQuantity = 0;
 
+        for (String orderMenu : orders) {
+            int quantity = Integer.parseInt(orderMenu.split("-")[1].trim());
+            totalQuantity += quantity;
+        }
+
+        if (totalQuantity > 20) {
+            System.out.println("[ERROR] 주문 메뉴의 총 수량은 20개를 초과할 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 주문 메뉴의 총 수량은 20개를 초과할 수 없습니다.");
+        }
     }
 
     private static void validateBeverageOnly(String order){
