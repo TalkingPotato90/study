@@ -30,4 +30,10 @@ public class OutputView {
         System.out.println(giftMenu);
     }
 
+    public void showTotalBenefitsAmount(int totalBenefitAmount) {
+        System.out.println("<총혜택 금액>");
+        System.out.printf("%,d원%n", totalBenefitAmount);
+        System.out.println();
+    }
+
 }
