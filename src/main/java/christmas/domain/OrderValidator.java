@@ -44,7 +44,9 @@ public class OrderValidator {
     }
 
     private static void validateFormat(String order){
-
+        if (!order.matches("^[^,]+-\\d+(,[^,]+-\\d+)*$")) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
     }
 
     private static void validateDuplicateMenu(String order){

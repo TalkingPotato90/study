@@ -35,8 +35,8 @@
 2. [V] 메뉴와 개수 입력 받기 -> [V] 예외 처리 별도 클래스 생성 (OrderValidator)
    - [V] 메뉴판에 없는 메뉴 예외 처리 validateOnMenu
    - 메뉴의 개수는 1 이상의 숫자만 입력 가능 validateQuantity
-   - 메뉴 형식이 예시와 다른 경우 예외 처리 validateFormat
-   - 중복 메뉴를 입력한 경우 예외 처리 validateDuplicateMenu
+   - [V] 메뉴 형식이 예시와 다른 경우 예외 처리 validateFormat
+   - [V] 중복 메뉴를 입력한 경우 예외 처리 validateDuplicateMenu
    - 1회 주문에 20개가 넘어가면 예외 처리 validateTotalQuantity
    - 음료 메뉴만 있으면 예외 처리 validateBeverageOnly
 ### OutputView
