@@ -1,9 +1,10 @@
 package christmas.View;
 
+import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    public void welcome(){
+    public void welcome() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
     }
 
@@ -39,6 +40,17 @@ public class OutputView {
     public void showFinalPaymentAmount(int finalPaymentAmount) {
         System.out.println("<할인 후 예상 결제 금액>");
         System.out.printf("%,d원%n", finalPaymentAmount);
+        System.out.println();
+    }
+
+    public void showDiscounts(List<String> discountDetails) {
+        System.out.println("<혜택 내역>");
+        if (discountDetails.isEmpty()) {
+            System.out.println("없음");
+        }
+        if (!discountDetails.isEmpty()) {
+            discountDetails.forEach(System.out::println);
+        }
         System.out.println();
     }
 
