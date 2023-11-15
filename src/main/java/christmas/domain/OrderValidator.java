@@ -48,7 +48,17 @@ public class OrderValidator {
     }
 
     private static void validateDuplicateMenu(String order){
+        String[] orders = order.split(",");
+        Set<String> menuSet = new HashSet<>();
 
+        for (String orderMenu : orders) {
+            String[] menuAndQuantity = orderMenu.split("-");
+            String menu = menuAndQuantity[0].trim();
+
+            if (!menuSet.add(menu)) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            }
+        }
     }
 
     private static void validateTotalQuantity(String order){
