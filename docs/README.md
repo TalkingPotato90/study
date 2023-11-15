@@ -39,7 +39,7 @@
    - [V] 중복 메뉴를 입력한 경우 예외 처리 validateDuplicateMenu
    - [V] 1회 주문에 20개가 넘어가면 예외 처리 validateTotalQuantity 
       + [V] 안내용 에러 메시지 구현
-   - 음료 메뉴만 있으면 예외 처리 validateBeverageOnly
+   - [V] 음료 메뉴만 있으면 예외 처리 validateBeverageOnly
 ### OutputView
 1. <주문 메뉴>
 2. <할인 전 총주문 금액>

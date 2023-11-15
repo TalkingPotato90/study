@@ -86,6 +86,21 @@ public class OrderValidator {
     }
 
     private static void validateBeverageOnly(String order){
+        String[] orders = order.split(",");
+        boolean hasNonBeverage = false;
 
+        for (String orderMenu : orders) {
+            String menu = orderMenu.split("-")[0].trim();
+
+            if (!BEVERAGE_MENU.contains(menu)) {
+                hasNonBeverage = true;
+                break;
+            }
+        }
+
+        if (!hasNonBeverage) {
+            System.out.println("[ERROR] 음료 메뉴만으로는 주문이 불가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 음료 메뉴만으로는 주문이 불가능합니다.");
+        }
     }
 }
