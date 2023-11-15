@@ -28,5 +28,13 @@ public class EventApplier {
                 .sum();
     }
 
+    public static String calculateGiftMenu(List<Event> events, int totalOrderAmount) {
+        for (Event event : events) {
+            if (event instanceof GiftEvent && event.isApplicable(null, totalOrderAmount)) {
+                return "샴페인 1개";
+            }
+        }
+        return "없음";
+    }
 
 }
