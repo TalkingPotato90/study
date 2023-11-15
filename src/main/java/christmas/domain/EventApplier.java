@@ -37,4 +37,7 @@ public class EventApplier {
         return "없음";
     }
 
+    public static int calculateFinalPaymentAmount(int totalOrderAmount, int totalBenefitAmount) {
+        return Math.max(totalOrderAmount - totalBenefitAmount, 0);
+    }
 }
