@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class ChristmasDiscountEvent implements Event {
     private static final LocalDate START_DATE = LocalDate.of(2023, 12, 1);
@@ -16,8 +17,8 @@ public class ChristmasDiscountEvent implements Event {
     @Override
     public int calculateDiscount(int totalOrderAmount) {
         LocalDate currentDate = LocalDate.now();
-        int daysSinceStart = (int) START_DATE.datesUntil(currentDate).count();
-        int discount = INITIAL_DISCOUNT + daysSinceStart * DAILY_INCREMENT;
+        long daysSinceStart = ChronoUnit.DAYS.between(START_DATE, currentDate);
+        int discount = INITIAL_DISCOUNT + (int) (daysSinceStart * DAILY_INCREMENT);
 
         if (totalOrderAmount >= 10000) {
             return Math.min(discount, totalOrderAmount);

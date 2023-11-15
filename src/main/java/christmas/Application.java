@@ -19,12 +19,12 @@ public class Application {
 
         String order = inputView.inputOrder();
 
+        outputView.showEventPreview(visitDate);
+
         outputView.showOrderedMenu(OrderParser.parseOrder(order));
 
         int totalOrderAmount = OrderCalculator.calculateTotalOrderAmount(order);
         outputView.showTotalOrderAmount(totalOrderAmount);
-
-        outputView.showEventPreview(visitDate);
 
         List<Event> events = List.of(
                 new ChristmasDiscountEvent(),
