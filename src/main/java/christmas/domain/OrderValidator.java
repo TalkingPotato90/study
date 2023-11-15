@@ -40,7 +40,14 @@ public class OrderValidator {
     }
 
     private static void validateQuantity(String order){
+        String[] orders = order.split(",");
+        for (String orderMenu : orders) {
+            int quantity = Integer.parseInt(orderMenu.split("-")[1].trim());
 
+            if (quantity < 1 || quantity > 20) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            }
+        }
     }
 
     private static void validateFormat(String order){
