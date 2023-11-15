@@ -21,4 +21,12 @@ public class EventApplier {
         return discountDetails;
     }
 
+    public static int calculateTotalBenefitAmount(List<String> discountDetails) {
+        return discountDetails.stream()
+                .map(detail -> detail.split(": -")[1].replace("원", ""))
+                .mapToInt(Integer::parseInt)
+                .sum();
+    }
+
+
 }
