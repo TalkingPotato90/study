@@ -19,7 +19,6 @@ public class ChristmasDiscountEvent implements Event {
         int daysSinceStart = (int) START_DATE.datesUntil(currentDate).count();
         int discount = INITIAL_DISCOUNT + daysSinceStart * DAILY_INCREMENT;
 
-        // 전체 주문 금액이 1만원 이상인 경우에만 할인을 적용
         if (totalOrderAmount >= 10000) {
             return Math.min(discount, totalOrderAmount);
         }
