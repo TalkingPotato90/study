@@ -25,4 +25,9 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printGiftMenu(String giftMenu) {
+        System.out.println("<증정 메뉴>");
+        System.out.println(giftMenu);
+    }
+
 }
