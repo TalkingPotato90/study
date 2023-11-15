@@ -19,14 +19,14 @@ public class BadgeEvent implements Event {
         return 0;
     }
 
-    public String assignBadge(int totalOrderAmount) {
-        if (totalOrderAmount >= BADGE_3_THRESHOLD) {
+    public String assignBadge(int totalBenefitAmount) {
+        if (totalBenefitAmount >= BADGE_3_THRESHOLD) {
             return "산타";
         }
-        if (totalOrderAmount >= BADGE_2_THRESHOLD) {
+        if (totalBenefitAmount >= BADGE_2_THRESHOLD) {
             return "트리";
         }
-        if (totalOrderAmount >= BADGE_1_THRESHOLD) {
+        if (totalBenefitAmount >= BADGE_1_THRESHOLD) {
             return "별";
         }
         return "없음";
