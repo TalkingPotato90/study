@@ -10,7 +10,7 @@ public class EventApplier {
 
         for (Event event : events) {
             if (event.isApplicable(visitDate, totalOrderAmount)) {
-                int discountAmount = event.calculateDiscount(totalOrderAmount);
+                int discountAmount = event.calculateDiscount(visitDate,totalOrderAmount);
                 if (discountAmount > 0) {
                     discountDetails.add(event.getClass().getSimpleName() + ": -" + discountAmount + "원");
                     totalOrderAmount -= discountAmount;

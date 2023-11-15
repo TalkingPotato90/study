@@ -19,7 +19,7 @@ public class SpecialDiscountEvent implements Event {
     }
 
     @Override
-    public int calculateDiscount(int totalOrderAmount) {
+    public int calculateDiscount(LocalDate visitDate, int totalOrderAmount) {
         LocalDate currentDate = LocalDate.now();
 
         if (totalOrderAmount >= 10000 && SPECIAL_DATES.contains(currentDate)) {

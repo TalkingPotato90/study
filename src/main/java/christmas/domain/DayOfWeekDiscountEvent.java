@@ -20,7 +20,7 @@ public class DayOfWeekDiscountEvent implements Event {
     }
 
     @Override
-    public int calculateDiscount(int totalOrderAmount) {
+    public int calculateDiscount(LocalDate visitDate, int totalOrderAmount) {
         LocalDate currentDate = LocalDate.now();
         DayOfWeek dayOfWeek = currentDate.getDayOfWeek();
 

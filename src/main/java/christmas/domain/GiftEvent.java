@@ -13,7 +13,7 @@ public class GiftEvent implements Event {
     }
 
     @Override
-    public int calculateDiscount(int totalOrderAmount) {
+    public int calculateDiscount(LocalDate visitDate, int totalOrderAmount) {
         return 0;
     }
 }

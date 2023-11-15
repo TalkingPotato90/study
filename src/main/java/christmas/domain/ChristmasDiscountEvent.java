@@ -15,10 +15,11 @@ public class ChristmasDiscountEvent implements Event {
     }
 
     @Override
-    public int calculateDiscount(int totalOrderAmount) {
-        LocalDate currentDate = LocalDate.now();
-        long daysSinceStart = ChronoUnit.DAYS.between(START_DATE, currentDate);
+    public int calculateDiscount(LocalDate visitDate, int totalOrderAmount) {
+        long daysSinceStart = ChronoUnit.DAYS.between(START_DATE, visitDate);
         int discount = INITIAL_DISCOUNT + (int) (daysSinceStart * DAILY_INCREMENT);
+
+
 
         if (totalOrderAmount >= 10000) {
             return Math.min(discount, totalOrderAmount);
