@@ -9,10 +9,7 @@ public class GiftEvent implements Event {
 
     @Override
     public boolean isApplicable(LocalDate date, int totalOrderAmount) {
-        if (date == null) {
-            return false;
-        }
-        return date.isAfter(START_DATE) && date.isBefore(END_DATE);
+        return date == null || (date.isAfter(START_DATE) && date.isBefore(END_DATE) && totalOrderAmount >= GIFT_ORDER_AMOUNT_THRESHOLD);
     }
 
     @Override
