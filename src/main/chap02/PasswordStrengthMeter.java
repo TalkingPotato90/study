@@ -3,7 +3,7 @@ package chap02;
 public class PasswordStrengthMeter {
     public PasswordStrength meter(String s) {
         if (s == null || s.isEmpty()) return PasswordStrength.INVALID;
-        int metCounts=getMetCriteriaCounts(s);
+        int metCounts = getMetCriteriaCounts(s);
 
         if (metCounts <= 1) return PasswordStrength.WEAK;
         if (metCounts == 2) return PasswordStrength.NORMAL;
@@ -11,8 +11,8 @@ public class PasswordStrengthMeter {
         return PasswordStrength.STRONG;
     }
 
-    private int getMetCriteriaCounts(String s){
-        int metCounts =0;
+    private int getMetCriteriaCounts(String s) {
+        int metCounts = 0;
         if (s.length() >= 8) metCounts++;
         if (meetsContainingNumberCriteria(s)) metCounts++;
         if (meetsContainingUppercaseCriteria(s)) metCounts++;
