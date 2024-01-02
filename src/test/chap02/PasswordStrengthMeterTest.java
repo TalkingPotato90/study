@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PasswordStrengthMeterTest {
+public class PasswordStrengthMeterTest {
     private PasswordStrengthMeter meter = new PasswordStrengthMeter();
 
     private void assertStrength(String password, PasswordStrength expStr) {
@@ -60,6 +60,11 @@ class PasswordStrengthMeterTest {
     @Test
     void meetsOnlyUppercaseCriteria_Then_Weak(){
         assertStrength("ABZEF", PasswordStrength.WEAK);
+    }
+
+    @Test
+    void meetsNoCriteria_Then_Weak(){
+        assertStrength("abc", PasswordStrength.WEAK);
     }
 
 
