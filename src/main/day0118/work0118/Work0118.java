@@ -1,7 +1,8 @@
 package day0118.work0118;
 
+import java.util.Arrays;
+
 public class Work0118 {
-    public static final int MZ_LENGTH = 8;
     public static final int PASSWORD_RANGE = 75;
     public static final int PASSWORD_RANGE_CORRECTION = 48;
     public static final int START_NUMBER_CODE_CORRECTION = 58;
@@ -14,7 +15,7 @@ public class Work0118 {
 
     public static void generateArray() {
         String[] mz = "어쩔티비,저쩔티비,뇌절티비,안물티비,안궁티비,때리고싶쥬~,못때리쥬~,개킹받쥬~".split(",");
-        int randIndex = (int) (Math.random() * MZ_LENGTH);
+        int randIndex = (int) (Math.random() * mz.length);
         System.out.println(mz[randIndex]);
     }
 
@@ -49,6 +50,7 @@ public class Work0118 {
         for (int i = 0; i < lottoNum.length; i++) {
             lottoNum[i] = generateValidRandomNumber(lottoNum);
         }
+//        Arrays.sort(lottoNum);
         return lottoNum;
     }
 
