@@ -15,6 +15,7 @@ public class Work0119 {
     public static final int CA = 3;
 
     public String returnBackUpFileName(String fileName) {
+//        1. 일단 그냥 예시에 대한 결과내는 방법 생각해보기
 //        String result = "test_bak";
 //        String result = fileName.concat("_bak");
 //        if(fileName.equals("temp")){
@@ -26,6 +27,7 @@ public class Work0119 {
 //            result = "temp_bak.exe";
 //        }
 
+//        2. 일반적인 상황에서 적용 가능한 코드로 변경하기
 //        String tempFileName;
 //        String tempExtensionName;
 //        if(fileName.contains(".")){
@@ -36,10 +38,12 @@ public class Work0119 {
 //
 //        return result;
 
+//        3. 좀 더 효율적인 방법 생각하기
         StringBuilder result = new StringBuilder(fileName);
 
         int lastDotIndex = fileName.lastIndexOf(".");
         if (lastDotIndex != -1) {
+//            arguments 가독성 높이기
 //            String tempFileName = fileName.substring(0, fileName.lastIndexOf("."));
 //            String tempExtensionName = fileName.substring(fileName.lastIndexOf("."));
             String tempFileName = fileName.substring(0, lastDotIndex);

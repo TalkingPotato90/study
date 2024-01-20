@@ -2,10 +2,6 @@ package day0119.work0119;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.Clock;
-import java.time.Instant;
-import java.time.ZoneId;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -33,8 +29,9 @@ class Work0119Test {
         String result1 = work0119.returnBackUpFileName("temp.exe");
         assertEquals("temp_bak.exe", result1);
 
-        String result2 = work0119.returnBackUpFileName("what.html");
-        assertEquals("what_bak.html", result2);
+        String result2 = work0119.returnBackUpFileName("what.pptx.ppt");
+        assertEquals("what.pptx_bak.ppt", result2);
+
     }
 
     @Test
