@@ -15,37 +15,11 @@ public class Work0119 {
     public static final int CA = 3;
 
     public String returnBackUpFileName(String fileName) {
-//        1. 일단 그냥 예시에 대한 결과내는 방법 생각해보기
-//        String result = "test_bak";
-//        String result = fileName.concat("_bak");
-//        if(fileName.equals("temp")){
-//            result = "temp_bak";
-//        }
-//        if(fileName.equals("test.txt")){
-//            result = "test_bak.txt";
-//        }else if(fileName.equals("temp.exe")){
-//            result = "temp_bak.exe";
-//        }
 
-//        2. 일반적인 상황에서 적용 가능한 코드로 변경하기
-//        String tempFileName;
-//        String tempExtensionName;
-//        if(fileName.contains(".")){
-//            tempFileName = fileName.substring(0, fileName.lastIndexOf("."));
-//            tempExtensionName = fileName.substring(fileName.lastIndexOf("."));
-//            result = tempFileName + "_bak" + tempExtensionName;
-//        }
-//
-//        return result;
-
-//        3. 좀 더 효율적인 방법 생각하기
         StringBuilder result = new StringBuilder(fileName);
 
         int lastDotIndex = fileName.lastIndexOf(".");
         if (lastDotIndex != -1) {
-//            arguments 가독성 높이기
-//            String tempFileName = fileName.substring(0, fileName.lastIndexOf("."));
-//            String tempExtensionName = fileName.substring(fileName.lastIndexOf("."));
             String tempFileName = fileName.substring(0, lastDotIndex);
             String tempExtensionName = fileName.substring(lastDotIndex);
             result = new StringBuilder(tempFileName).append("_bak").append(tempExtensionName);
@@ -97,18 +71,22 @@ public class Work0119 {
         return sdf.format(new Date());
     }
 
+    public void printMessage(String msg){
+        System.out.println(msg);
+    }
+
     public static void main(String[] args) {
         Work0119 work0119 = new Work0119();
 
-        System.out.println(work0119.returnBackUpFileName("test.txt"));
+        work0119.printMessage(work0119.returnBackUpFileName("test.txt"));
         System.out.println(work0119.returnBackUpFileName("test"));
 
         String csvData = "고한별,김도원,김동섭.김무영~김현종 박시현,손지민,김병년.김일신";
         work0119.printCsvData(csvData);
 
-        System.out.println(work0119.returnTime(KR));
-        System.out.println(work0119.returnTime(US));
-        System.out.println(work0119.returnTime(JP));
-        System.out.println(work0119.returnTime(CA));
+        work0119.printMessage(work0119.returnTime(KR));
+        work0119.printMessage(work0119.returnTime(US));
+        work0119.printMessage(work0119.returnTime(JP));
+        work0119.printMessage(work0119.returnTime(CA));
     }
 }

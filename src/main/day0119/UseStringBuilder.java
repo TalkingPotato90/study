@@ -60,8 +60,19 @@ public class UseStringBuilder {
         UseStringBuilder usb = new UseStringBuilder();
         System.out.println("--------------StringBuffer---------------");
         usb.useStringBuffer();
-        ;
+
         System.out.println("--------------StringBuilder--------------");
         usb.useStringBuilder();
+
+        String str="안녕";
+        // String에 +=을 사용하거나 +연산 하게되면 JDK1.5에서부터는
+        // StringBuilder객체를 생성하여 문자열 저장하고 append를 수행한다
+        str+="하세요?";
+        str+="오늘은";
+        System.out.println(str+" 추운 월요일 입니다."+ "아우 춥다");
+
+        StringBuilder sb = new StringBuilder("안녕");
+        sb.append("하세요?").append("오늘은");
+        System.out.println(sb.append(" 추운 월요일 입니다").append(" 아우 춥다"));
     }
 }
