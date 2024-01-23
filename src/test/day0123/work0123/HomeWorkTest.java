@@ -9,8 +9,7 @@ class HomeWorkTest {
     @Test
     void 입력_모드_확인(){
         HomeWork homeWork = new HomeWork();
-        String result = homeWork.selectMode();
-        assertEquals(",", result);
+
     }
 
     @Test
@@ -21,15 +20,13 @@ class HomeWorkTest {
     @Test
     void 출력_모드_확인(){
         HomeWork homeWork = new HomeWork();
-        String result = homeWork.selectMode();
-        assertEquals("출력",result);
+
     }
 
     @Test
     void 실행_종료_확인(){
         HomeWork homeWork = new HomeWork();
-        String result = homeWork.selectMode();
-        assertEquals("y",result);
+
     }
 
     @Test

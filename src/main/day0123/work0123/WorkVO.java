@@ -1,7 +1,8 @@
 package day0123.work0123;
 
 public class WorkVO {
-
+    private static int studentNumber = 1;
+    private int number;
     private String studentName;
     private int javaScore;
     private int oracleScore;
@@ -13,6 +14,12 @@ public class WorkVO {
         this.studentName = studentName;
         this.javaScore = javaScore;
         this.oracleScore = oracleScore;
+        this.number = studentNumber++;
+    }
+
+    public void printScore() {
+        System.out.printf("%3d %7s %5d %5d   %5d%n",
+                number, studentName, javaScore, oracleScore, javaScore + oracleScore);
     }
 
     public String getStudentName() {
@@ -37,5 +44,10 @@ public class WorkVO {
 
     public void setOracleScore(int oracleScore) {
         this.oracleScore = oracleScore;
+    }
+
+    @Override
+    public String toString() {
+        return  studentName + "\t" + javaScore + "\t\t" + oracleScore;
     }
 }
