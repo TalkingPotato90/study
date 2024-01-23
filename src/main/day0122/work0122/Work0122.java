@@ -1,7 +1,5 @@
 package day0122.work0122;
 
-import day0119.work0119.Work0119;
-
 import java.time.LocalDate;
 import java.util.Calendar;
 
