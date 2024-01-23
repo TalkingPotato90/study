@@ -1,9 +1,13 @@
-package day0123;
+package day0123.work0123;
 
 import javax.swing.*;
-import java.io.Console;
 
 public class HomeWork {
+
+    public String selectMode(){
+        String inputData = JOptionPane.showInputDialog("\"이름,자바점수,오라클점수\" 입력\n\"출력\"을 입력하면 출력됩니다.\n 종료하시려면 \"Y | y\"를 입력해주세요");
+        return "출력";
+    }
 
     public void processInputData() {
         String inputData = JOptionPane.showInputDialog("\"이름,자바점수,오라클점수\" 입력\n\"출력\"을 입력하면 출력됩니다.\n 종료하시려면 \"Y | y\"를 입력해주세요");

@@ -1,4 +1,4 @@
-package day0123;
+package day0123.work0123;
 
 public class WorkVO {
 
