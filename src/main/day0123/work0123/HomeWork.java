@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeWork {
-
+    public static final int STUDENT_NAME = 0;
+    public static final int JAVA_SCORE = 1;
+    public static final int ORACLE_SCORE = 2;
     private List<WorkVO> workList;
     private boolean status = true;
 
@@ -27,13 +29,13 @@ public class HomeWork {
     }
 
     public void convertInputData(String inputData) {
-        String[] temp = inputData.split(",");
-        String name = temp[0];
-        int java = Integer.parseInt(temp[1]);
-        int oracle = Integer.parseInt(temp[2]);
-        WorkVO workVO = new WorkVO(name, java, oracle);
+            String[] temp = inputData.split(",");
+            String name = temp[STUDENT_NAME];
+            int java = Integer.parseInt(temp[JAVA_SCORE]);
+            int oracle = Integer.parseInt(temp[ORACLE_SCORE]);
+            WorkVO workVO = new WorkVO(name, java, oracle);
 
-        workList.add(workVO);
+            workList.add(workVO);
     }
 
     public void printFormat() {
@@ -46,6 +48,7 @@ public class HomeWork {
     public void exitCondition() {
         status = false;
     }
+
     public static void main(String[] args) {
 
 //        String inputData = JOptionPane.showInputDialog("이름을 입력해주세요", "홍길동");

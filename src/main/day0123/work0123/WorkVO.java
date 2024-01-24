@@ -18,7 +18,7 @@ public class WorkVO {
     }
 
     public void printScore() {
-        System.out.printf("%3d %7s %5d %5d   %5d%n",
+        System.out.printf("%3d %6s  %5d  %5d   %5d%n",
                 number, studentName, javaScore, oracleScore, javaScore + oracleScore);
     }
 
@@ -46,8 +46,8 @@ public class WorkVO {
         this.oracleScore = oracleScore;
     }
 
-    @Override
-    public String toString() {
-        return  studentName + "\t" + javaScore + "\t\t" + oracleScore;
-    }
+//    @Override
+//    public String toString() {
+//        return  studentName + "\t" + javaScore + "\t\t" + oracleScore;
+//    }
 }
