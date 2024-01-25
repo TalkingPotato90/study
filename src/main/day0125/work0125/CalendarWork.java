@@ -6,48 +6,69 @@ import java.time.LocalDate;
 import java.util.Calendar;
 
 public class CalendarWork extends JFrame {
-
+    public Calendar calendar = Calendar.getInstance();
+    public int lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
     public CalendarWork() {
         super("달력");
-
-        Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, 1);
-        LocalDate localDate = LocalDate.now();
-        Font font = new Font("맑은고딕", Font.BOLD, 20);
 
-        int lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        int[] calendarDay = new int[localDate.lengthOfMonth()];
 
+        int[] calendarDay = new int[lastDay];
 
         JButton[] jrbArr = new JButton[calendarDay.length];
-        setLayout(new GridLayout(5, 7));
-        JButton jbtnFwdMonth = new JButton("31");
-        jbtnFwdMonth.setBackground(Color.BLACK);
-        jbtnFwdMonth.setFont(font);
-        add(jbtnFwdMonth);
+        setLayout(new GridLayout(0, 7));
 
+        lastMonthDay(dayOfWeek - 1);
+        printThisMonth(calendarDay, jrbArr);
+        nextMonthDay();
+        swingSet();
+    }
+
+    public void lastMonthDay(int lastMonthDay) {
+        for (int i = lastMonthDay - 1; i >= 0; i--) {
+            JButton jbtnFwdMonth = new JButton(String.valueOf(lastDay - i));
+            setButton(jbtnFwdMonth);
+        }
+    }
+
+    public void printThisMonth(int[] calendarDay, JButton[] jrbArr) {
         for (int i = 0; i < calendarDay.length; i++) {
             calendarDay[i] = i + 1;
             jrbArr[i] = new JButton(String.valueOf(calendarDay[i]));
-            jrbArr[i].setBackground(Color.BLACK);
+            setButton(jrbArr[i]);
             jrbArr[i].setForeground(Color.WHITE);
-            jrbArr[i].setFont(font);
-            add(jrbArr[i]);
+        }
+    }
+
+    public void nextMonthDay() {
+        calendar.set(Calendar.DAY_OF_MONTH, lastDay);
+        int lastDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        int nextMonthButton = Calendar.DAY_OF_WEEK - lastDayOfWeek;
+
+        String[] numArr = new String[nextMonthButton];
+        for (int i = 0; i < nextMonthButton; i++) {
+            numArr[i] = String.valueOf(i + 1);
         }
 
-        String[] numArr={"1","2","3"};
         JButton[] jrbArr2 = new JButton[numArr.length];
 
         for (int i = 0; i < numArr.length; i++) {
             jrbArr2[i] = new JButton(numArr[i]);
-            jrbArr2[i].setBackground(Color.BLACK);
-            jrbArr2[i].setFont(font);
-            add(jrbArr2[i]);
+            setButton(jrbArr2[i]);
         }
+    }
 
-        setBounds(200,200,500, 500);
+    public void setButton(JButton button) {
+        Font font = new Font("맑은고딕", Font.BOLD, 20);
+        button.setBackground(Color.BLACK);
+        button.setFont(font);
+        add(button);
+    }
+
+    public void swingSet() {
+        setBounds(200, 200, 500, 500);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
