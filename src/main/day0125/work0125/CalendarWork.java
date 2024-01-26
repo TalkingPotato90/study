@@ -2,18 +2,18 @@ package day0125.work0125;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
 import java.util.Calendar;
 
 public class CalendarWork extends JFrame {
     public Calendar calendar = Calendar.getInstance();
-    public int lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    public int lastDay;
+    public int dayOfWeek;
 
     public CalendarWork() {
         super("달력");
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
 
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        initializeCalendar();
+        setSelectedMonthInfo();
 
         int[] calendarDay = new int[lastDay];
 
@@ -26,9 +26,22 @@ public class CalendarWork extends JFrame {
         swingSet();
     }
 
+    public void initializeCalendar(){
+        String inputData = JOptionPane.showInputDialog("출력할 달력의 월을 입력하세요 (기준연도 : 2024)");
+        int selectMonth = Integer.parseInt(inputData);
+        calendar.set(Calendar.MONTH, selectMonth-1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+    }
+
+    public void setSelectedMonthInfo(){
+        lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+    }
+
     public void lastMonthDay(int lastMonthDay) {
+        JButton jbtnFwdMonth;
         for (int i = lastMonthDay - 1; i >= 0; i--) {
-            JButton jbtnFwdMonth = new JButton(String.valueOf(lastDay - i));
+            jbtnFwdMonth = new JButton(String.valueOf(lastDay - i));
             setButton(jbtnFwdMonth);
         }
     }
