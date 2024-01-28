@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadyForGame {
-    public List<Integer> computerNumbers() {
+
+    public List<Integer> computerNumber(){
         List<Integer> computer = new ArrayList<>();
-        int randomNumber;
         while (computer.size() < 3) {
-            randomNumber = Randoms.pickNumberInRange(1, 9);
+            int randomNumber = Randoms.pickNumberInRange(1, 9);
             if (!computer.contains(randomNumber)) {
                 computer.add(randomNumber);
             }
         }
-
         return computer;
     }
+
 }
