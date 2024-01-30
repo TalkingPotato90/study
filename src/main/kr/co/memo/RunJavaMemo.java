@@ -1,4 +1,4 @@
-package kr.co.sist.memo;
+package kr.co.memo;
 
 public class RunJavaMemo {
     public static void main(String[] args) {

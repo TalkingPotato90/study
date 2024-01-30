@@ -1,11 +1,14 @@
-package kr.co.sist.memo;
+package kr.co.memo;
 
 import javax.swing.*;
 
 public class StudentCard extends JFrame {
 
     public StudentCard(){
+
         super("숙제");
+
+        setLayout(null);
 
         JLabel jlName = new JLabel("이름");
         JTextField jtfName = new JTextField();
@@ -16,54 +19,41 @@ public class StudentCard extends JFrame {
 
         DefaultComboBoxModel<Integer> dcbm = new DefaultComboBoxModel<Integer>();
         JComboBox<Integer> jcbAge = new JComboBox<Integer>(dcbm);
-        JPanel jp = new JPanel();
 
         for (int i = 20; i < 41; i++) {
         dcbm.addElement(i);
         }
 
-        JButton jbtnAdd = new JButton("추가");
-        JButton jbtnEdit = new JButton("변경");
-        JButton jbtnDelete = new JButton("삭제");
-        JButton jbtnExit = new JButton("종료");
-
-        setLayout(null);
-        jbtnAdd.setBounds(60,230,60,25);
-        jbtnEdit.setBounds(130,230,60,25);
-        jbtnDelete.setBounds(200,230,60,25);
-        jbtnExit.setBounds(270,230,60,25);
-
-        add(jbtnAdd);
-        add(jbtnEdit);
-        add(jbtnDelete);
-        add(jbtnExit);
-
+        JPanel jp = new JPanel();
         JRadioButton jbMale = new JRadioButton("남");
         JRadioButton jbFemale = new JRadioButton("여",true);
 
         ButtonGroup genderGroup =new ButtonGroup();
+
         genderGroup.add(jbMale);
         genderGroup.add(jbFemale);
 
         jlName.setBounds(30,30,30,25);
-        jtfName.setBounds(60,30,100,25);
         jlAge.setBounds(30,70,30,30);
-        jp.setBounds(60,65,60,30);
         jlGender.setBounds(30,110,30,30);
+        jlPhone.setBounds(30,150,50,30);
+
+        jtfName.setBounds(60,30,100,25);
+        jp.setBounds(60,65,60,30);
         jbMale.setBounds(60,110,50,30);
         jbFemale.setBounds(120,110,50,30);
-        jlPhone.setBounds(30,150,50,30);
         jtfPhone.setBounds(90,155,100,25);
 
+        addMenuButton();
         add(jlName);
-        add(jtfName);
         add(jlAge);
+        add(jlGender);
+        add(jlPhone);
+        add(jtfName);
         jp.add(jcbAge);
         add(jp);
-        add(jlGender);
         add(jbMale);
         add(jbFemale);
-        add(jlPhone);
         add(jtfPhone);
 
         DefaultListModel<String> dlm = new DefaultListModel<String>();
@@ -79,12 +69,25 @@ public class StudentCard extends JFrame {
 
         add(jsp);
 
+        setJFrame();
 
+    }
 
+    public void addMenuButton(){
+        String[] strArrMenuName = {"추가","변경","삭제","종료"};
+        JButton[] jbtnArrMenu = new JButton[strArrMenuName.length];
+
+        for (int i = 0; i < strArrMenuName.length; i++) {
+            jbtnArrMenu[i] = new JButton(strArrMenuName[i]);
+            jbtnArrMenu[i].setBounds((i+1)*60+i*10,230,60,25);
+            add(jbtnArrMenu[i]);
+        }
+    }
+
+    public void setJFrame(){
         setBounds(500,100,400,320);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
 
 }
