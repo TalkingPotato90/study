@@ -9,40 +9,29 @@ public class StudentManagementDesign extends JFrame {
     private JButton[] jbtnArrMenu;
     private JTextField jtfName;
     private JTextField jtfPhone;
+    private JRadioButton jbMale;
+    private DefaultListModel<String> dlm;
 
     public StudentManagementDesign() {
 
         super("숙제");
-
         setLayout(null);
+        dlm = new DefaultListModel<String>();
 
         addName();
         addAge();
         addGender();
         addPhone();
-
-        DefaultListModel<String> dlm = new DefaultListModel<String>();
-
-        JList<String> jlStudent = new JList<String>(dlm);
-
-        dlm.addElement("1, 진수현, 남, 010-1234-5678");
-        dlm.addElement("2, 김동섭, 남, 010-2345-6789");
-
-        JScrollPane jsp = new JScrollPane(jlStudent);
-
+        addInfoList();
+        setEvent();
+        setJFrame();
+    }
+    public void setEvent(){
         StudentManagementEvent sme = new StudentManagementEvent(this);
         addWindowListener(sme);
         for (JButton arrMenu : jbtnArrMenu) {
             arrMenu.addActionListener(sme);
         }
-        jtfName.addActionListener(sme);
-        jtfPhone.addActionListener(sme);
-
-        jsp.setBounds(210, 15, 140, 180);
-
-        add(jsp);
-
-        setJFrame();
     }
 
     public void addName() {
@@ -76,7 +65,7 @@ public class StudentManagementDesign extends JFrame {
     public void addGender(){
         JLabel jlGender = new JLabel("성별");
 
-        JRadioButton jbMale = new JRadioButton("남");
+        jbMale = new JRadioButton("남");
         JRadioButton jbFemale = new JRadioButton("여", true);
 
         ButtonGroup genderGroup = new ButtonGroup();
@@ -116,6 +105,20 @@ public class StudentManagementDesign extends JFrame {
         }
     }
 
+    public void addInfoList() {
+        JList<String> jlStudent = new JList<String>(dlm);
+
+        JScrollPane jsp = new JScrollPane(jlStudent);
+        jsp.setBounds(210, 15, 140, 180);
+
+        add(jsp);
+    }
+
+    public void addInfoList(String studentInfo){
+        dlm.addElement(studentInfo);
+        repaint();
+    }
+
     public void setJFrame() {
         setBounds(500, 100, 400, 320);
         setVisible(true);
@@ -132,5 +135,13 @@ public class StudentManagementDesign extends JFrame {
 
     public JTextField getJtfPhone() {
         return jtfPhone;
+    }
+
+    public JRadioButton getJbMale() {
+        return jbMale;
+    }
+
+    public DefaultListModel<String> getDlm() {
+        return dlm;
     }
 }
