@@ -122,7 +122,6 @@ public class StudentManagementDesign extends JFrame {
     public void setJFrame() {
         setBounds(500, 100, 400, 320);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public JButton[] getJbtnArrMenu() {
