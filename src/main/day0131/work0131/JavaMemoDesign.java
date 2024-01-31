@@ -39,6 +39,16 @@ public class JavaMemoDesign extends JFrame {
         jmb.add(jmHelp);
         setJMenuBar(jmb);
         add(jspJtaNote);
+
+        JavaMemoEvent jme = new JavaMemoEvent(this);
+        jmiNew.addActionListener(jme);
+        jmiOpen.addActionListener(jme);
+        jmiSave.addActionListener(jme);
+        jmiClose.addActionListener(jme);
+        jmiFont.addActionListener(jme);
+        jmiHelp.addActionListener(jme);
+
+
         setJFrame();
     }
 
@@ -70,5 +80,13 @@ public class JavaMemoDesign extends JFrame {
 
     public JScrollPane getJspJtaNote() {
         return jspJtaNote;
+    }
+
+    public JMenuItem getJmiFont() {
+        return jmiFont;
+    }
+
+    public JMenuItem getJmiHelp() {
+        return jmiHelp;
     }
 }

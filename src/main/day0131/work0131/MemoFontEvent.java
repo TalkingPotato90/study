@@ -1,5 +1,7 @@
 package day0131.work0131;
 
+import day0131.SubJDialog;
+
 import java.awt.event.*;
 
 public class MemoFontEvent extends WindowAdapter implements ActionListener, MouseListener {
@@ -16,7 +18,7 @@ public class MemoFontEvent extends WindowAdapter implements ActionListener, Mous
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ae) {
 
     }
 
