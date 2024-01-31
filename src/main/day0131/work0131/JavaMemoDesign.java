@@ -53,7 +53,7 @@ public class JavaMemoDesign extends JFrame {
     }
 
     public void setJFrame() {
-        setBounds(300, 100, 500, 500);
+        setBounds(300, 100, 800, 500);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

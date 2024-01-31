@@ -42,7 +42,7 @@ public class JavaMemoEvent extends WindowAdapter implements ActionListener {
     }
 
     private void newMemo() {
-        System.out.println("새글");
+        jmd.getJtaNote().setText("");
     }
 
     private void openMemo() {
@@ -70,7 +70,7 @@ public class JavaMemoEvent extends WindowAdapter implements ActionListener {
     }
 
     private void fontDialog() {
-        System.out.println("폰트 이벤트 호출");
+        new MemoFontEvent(new MemoFontDesign(jmd));
     }
 
     private void helpDialog() {
