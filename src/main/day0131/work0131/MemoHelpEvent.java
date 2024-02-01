@@ -12,7 +12,6 @@ public class MemoHelpEvent extends WindowAdapter implements ActionListener {
         this.mhd = mhd;
     }
 
-
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == mhd.getJbtn()) {

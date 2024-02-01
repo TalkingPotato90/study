@@ -3,7 +3,6 @@ package day0131.work0131;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import java.awt.*;
 
 public class MemoFontDesign extends JDialog {
     private JTextField jtfFont, jtfStyle, jtfSize;
@@ -45,7 +44,7 @@ public class MemoFontDesign extends JDialog {
             }
             if (i >= 10) {
                 dlmSize.addElement(Integer.toString(i));
-                i = i + 2;
+                i += 2;
             }
         }
 

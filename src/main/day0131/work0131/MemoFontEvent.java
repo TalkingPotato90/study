@@ -13,23 +13,13 @@ public class MemoFontEvent extends WindowAdapter implements ActionListener, Mous
         this.mfd = mfd;
         Font currentFont = mfd.getSuperJtaNote().getFont();
         mfd.getJtfFont().setText(currentFont.getName());
-        String tempStyle;
-        switch (currentFont.getStyle()) {
-            case Font.PLAIN:
-                tempStyle = "일반";
-                break;
-            case Font.BOLD:
-                tempStyle = "굵게";
-                break;
-            case Font.ITALIC:
-                tempStyle = "기울임꼴";
-                break;
-            case Font.BOLD | Font.ITALIC:
-                tempStyle = "굵은 기울임꼴";
-                break;
-            default:
-                tempStyle = "일반";
-        }
+        String tempStyle = switch (currentFont.getStyle()) {
+            case Font.PLAIN -> "일반";
+            case Font.BOLD -> "굵게";
+            case Font.ITALIC -> "기울임꼴";
+            case Font.BOLD | Font.ITALIC -> "굵은 기울임꼴";
+            default -> "일반";
+        };
         mfd.getJtfStyle().setText(tempStyle);
         mfd.getJtfSize().setText(String.valueOf(currentFont.getSize()));
 
