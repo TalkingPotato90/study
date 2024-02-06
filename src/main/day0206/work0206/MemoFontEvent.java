@@ -3,6 +3,11 @@ package day0206.work0206;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MemoFontEvent extends WindowAdapter implements ActionListener, MouseListener {
 
@@ -94,8 +99,27 @@ public class MemoFontEvent extends WindowAdapter implements ActionListener, Mous
     }
 
     private void applyFont() {
+        Map<String, Object> fontInfo = new HashMap<>();
+        fontInfo.put("fontName", previewFont.getName());
+        fontInfo.put("fontStyle", previewFont.getStyle());
+        fontInfo.put("fontSize", previewFont.getSize());
+
+        saveFontInfo(fontInfo);
+
         mfd.getSuperJtaNote().setFont(previewFont);
         mfd.dispose();
+    }
+
+    private void saveFontInfo(Map<String, Object> fontInfo) {
+        String filePath = "d:/font.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Map.Entry<String, Object> entry : fontInfo.entrySet()) {
+                writer.write(entry.getKey() + ": " + entry.getValue() + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void closeFontDialog() {

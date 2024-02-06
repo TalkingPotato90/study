@@ -4,115 +4,101 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.*;
 
-public class JavaMemoEvent extends WindowAdapter implements ActionListener {
-    private JavaMemoDesign jmd;
+public class JavaMemoEvent implements ActionListener {
+    private final JavaMemoDesign jmd;
+    private String openPath;
+    private StringBuilder newMemo;
 
     public JavaMemoEvent(JavaMemoDesign jmd) {
         this.jmd = jmd;
     }
 
     @Override
-    public void windowClosing(WindowEvent e) {
-        jmd.dispose();
-    }
-
-    @Override
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == jmd.getJmiNew()) {
-            try {
-                newMemo();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        if (ae.getSource() == jmd.getJmiOpen()) {
-            try {
-                openMemo();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        if (ae.getSource() == jmd.getJmiSave()) {
-            try {
-                saveMemo();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        if (ae.getSource() == jmd.getJmiNewSave()) {
+        JMenuItem source = (JMenuItem) ae.getSource();
+        if (source == jmd.getJmiNew()) {
+            newMemo();
+        } else if (source == jmd.getJmiOpen()) {
+            openMemo();
+        } else if (source == jmd.getJmiSave()) {
+            saveMemo();
+        } else if (source == jmd.getJmiNewSave()) {
             saveNewMemo();
-        }
-        if (ae.getSource() == jmd.getJmiClose()) {
+        } else if (source == jmd.getJmiClose()) {
             closeMemo();
-        }
-        if (ae.getSource() == jmd.getJmiFont()) {
+        } else if (source == jmd.getJmiFont()) {
             fontDialog();
-        }
-        if (ae.getSource() == jmd.getJmiHelp()) {
+        } else if (source == jmd.getJmiHelp()) {
             helpDialog();
         }
     }
 
-    private void newMemo() throws IOException {
-        applyFont();
-
+    private void newMemo() {
         if (!checkEmpty()) {
-            askSave();
+            try {
+                askSave();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             resetJTA();
             setTitleBar();
         }
     }
 
-    private void openMemo() throws IOException {
+    private void openMemo() {
         if (!checkEmpty()) {
-            if (checkFirstOpen()) {
-                askSave();
-                saveNewMemo();
-                openMemopad();
-            } else {
-                checkChange();
-                askSave();
-                saveMemopad();
-                openMemopad();
+            try {
+                if (checkFirstOpen()) {
+                    askSave();
+                    saveNewMemo();
+                    openMemopad();
+                } else if (checkChange()) {
+                    askSave();
+                    openMemopad();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        } else openMemopad();
+        } else {
+            try {
+                openMemopad();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
-    private void saveMemo() throws IOException {
+    private void saveMemo() {
         if (checkFirstOpen()) {
             saveNewMemo();
         } else {
-            overWrite();
-            saveMemopad();
+            try {
+                askSave();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
     private void saveNewMemo() {
         FileDialog fdSave = new FileDialog(jmd, "새이름으로 저장", FileDialog.SAVE);
         fdSave.setVisible(true);
-
         String fullPath = fdSave.getDirectory() + fdSave.getFile();
-
-        File newTextFile = new File(fullPath + ".txt");
+        File newTextFile = new File(fullPath);
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(newTextFile))) {
-            String msg = jmd.getJtaNote().getText();
-            bw.write(msg);
-            bw.flush();
-        } catch (IOException ie) {
-            ie.printStackTrace();
+            bw.write(jmd.getJtaNote().getText());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
         resetJTA();
+        setTitleBar();
     }
 
     private void closeMemo() {
-        saveFontInfo();
         jmd.dispose();
     }
 
@@ -128,7 +114,7 @@ public class JavaMemoEvent extends WindowAdapter implements ActionListener {
         int flag = JOptionPane.showConfirmDialog(null, "저장하시겠습니까?");
         switch (flag) {
             case JOptionPane.OK_OPTION:
-                saveMemopad();
+                overWrite();
                 resetJTA();
                 setTitleBar();
                 break;
@@ -141,10 +127,6 @@ public class JavaMemoEvent extends WindowAdapter implements ActionListener {
         }
     }
 
-    private void saveMemopad(){
-        overWrite();
-    }
-
     private void resetJTA() {
         jmd.getJtaNote().setText("");
     }
@@ -153,20 +135,50 @@ public class JavaMemoEvent extends WindowAdapter implements ActionListener {
         jmd.setTitle("메모장 - 새글");
     }
 
-    private void openMemopad() {
+    private void openMemopad() throws IOException {
+        FileDialog fdOpen = new FileDialog(jmd, "열기", FileDialog.LOAD);
+        fdOpen.setVisible(true);
 
+        openPath = fdOpen.getDirectory() + fdOpen.getFile();
+
+        File readFile = new File(openPath);
+        newMemo = new StringBuilder();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(readFile))) {
+            String str;
+            while ((str = br.readLine()) != null) {
+                newMemo.append(str).append("\n");
+            }
+        }
+
+        jmd.getJtaNote().setText(newMemo.toString());
+
+        String fileName = readFile.getName();
+
+        if (!checkFirstOpen()) {
+            jmd.setTitle(fileName);
+        }
     }
 
-    private void checkChange() {
+    private boolean checkChange() {
+        String presentMemo = jmd.getJtaNote().getText();
+        String openedMemo = newMemo.toString();
+        return !presentMemo.equals(openedMemo);
     }
 
-    private void overWrite() {
-    }
+    private void overWrite() throws IOException {
+        if (openPath == null){
+            saveNewMemo();
+            return;
+        }
 
-    private void saveFontInfo() {
-    }
+        File readFile = new File(openPath);
 
-    private void applyFont() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(readFile))) {
+            bw.write(jmd.getJtaNote().getText());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private boolean checkEmpty() {
@@ -174,6 +186,8 @@ public class JavaMemoEvent extends WindowAdapter implements ActionListener {
     }
 
     private boolean checkFirstOpen() {
-        return true;
+        String title = jmd.getTitle();
+        return !title.endsWith(".txt");
     }
+
 }
