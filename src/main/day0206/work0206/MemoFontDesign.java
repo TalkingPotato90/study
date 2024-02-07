@@ -24,11 +24,11 @@ public class MemoFontDesign extends JDialog {
         jtfSize = new JTextField();
 
         dlmFont = new DefaultListModel<>();
-        dlmFont.addElement("고딕체");
+        dlmFont.addElement("고딕");
         dlmFont.addElement("궁서체");
         dlmFont.addElement("Consolas");
         dlmFont.addElement("새굴림");
-        dlmFont.addElement("맑은고딕");
+        dlmFont.addElement("맑은 고딕");
 
         dlmStyle = new DefaultListModel<>();
         dlmStyle.addElement("일반");
@@ -37,6 +37,7 @@ public class MemoFontDesign extends JDialog {
         dlmStyle.addElement("굵은 기울임꼴");
 
         dlmSize = new DefaultListModel<>();
+
         for (int i = 8; i < 81; ) {
             if (i < 10) {
                 dlmSize.addElement(Integer.toString(i));

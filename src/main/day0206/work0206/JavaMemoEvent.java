@@ -88,7 +88,9 @@ public class JavaMemoEvent implements ActionListener {
         fdSave.setVisible(true);
         String fullPath = fdSave.getDirectory() + fdSave.getFile();
         File newTextFile = new File(fullPath);
-
+        if (!fullPath.endsWith(".txt")) {
+            newTextFile = new File(fullPath + ".txt");
+        }
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(newTextFile))) {
             bw.write(jmd.getJtaNote().getText());
         } catch (IOException e) {
@@ -155,9 +157,8 @@ public class JavaMemoEvent implements ActionListener {
 
         String fileName = readFile.getName();
 
-        if (!checkFirstOpen()) {
-            jmd.setTitle(fileName);
-        }
+        jmd.setTitle(fileName);
+
     }
 
     private boolean checkChange() {
@@ -167,7 +168,7 @@ public class JavaMemoEvent implements ActionListener {
     }
 
     private void overWrite() throws IOException {
-        if (openPath == null){
+        if (openPath == null) {
             saveNewMemo();
             return;
         }

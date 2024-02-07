@@ -111,7 +111,7 @@ public class MemoFontEvent extends WindowAdapter implements ActionListener, Mous
     }
 
     private void saveFontInfo(Map<String, Object> fontInfo) {
-        String filePath = "d:/font.txt";
+        String filePath = "C:/dev/font.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Map.Entry<String, Object> entry : fontInfo.entrySet()) {

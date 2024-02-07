@@ -31,7 +31,6 @@ public class JavaMemoDesign extends JFrame {
         jtaNote = new JTextArea();
         jspJtaNote = new JScrollPane(jtaNote);
 
-
         jmHelp.add(jmiHelp);
         jmb.add(jmFile);
         jmFile.add(jmiNew);
@@ -56,40 +55,63 @@ public class JavaMemoDesign extends JFrame {
         jmiFont.addActionListener(jme);
         jmiHelp.addActionListener(jme);
 
-
         setJFrame();
         applyFont();
     }
 
     private void applyFont() {
-        File readFile = new File("d:/font.txt");
-        try (BufferedReader reader = new BufferedReader(new FileReader(readFile))) {
+        File fontFile = new File("C:/dev/font.txt");
+        if (!fontFile.exists()) {
+            return;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fontFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                if (parts.length == 2) {
-                    String key = parts[0].trim();
-                    String value = parts[1].trim();
-
-                    switch (key) {
-                        case "fontName":
-                            jtaNote.setFont(new Font(value, jtaNote.getFont().getStyle(), jtaNote.getFont().getSize()));
-                            break;
-                        case "fontStyle":
-                            int fontStyle = Integer.parseInt(value);
-                            jtaNote.setFont(new Font(jtaNote.getFont().getName(), fontStyle, jtaNote.getFont().getSize()));
-                            break;
-                        case "fontSize":
-                            int fontSize = Integer.parseInt(value);
-                            jtaNote.setFont(new Font(jtaNote.getFont().getName(), jtaNote.getFont().getStyle(), fontSize));
-                            break;
-                    }
-                }
+                initialFont(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    private void initialFont(String line) {
+        String[] parts = line.split(":");
+        if (parts.length == 2) {
+            String key = parts[0].trim();
+            String value = parts[1].trim();
+
+            switch (key) {
+                case "fontName":
+                    setFontName(value);
+                    break;
+                case "fontStyle":
+                    setFontStyle(value);
+                    break;
+                case "fontSize":
+                    setFontSize(value);
+                    break;
+            }
+        }
+    }
+
+    private void setFontName(String fontName) {
+        Font currentFont = jtaNote.getFont();
+        jtaNote.setFont(new Font(fontName, currentFont.getStyle(), currentFont.getSize()));
+    }
+
+    private void setFontStyle(String fontStyle) {
+        int style = Integer.parseInt(fontStyle);
+        Font currentFont = jtaNote.getFont();
+        jtaNote.setFont(new Font(currentFont.getName(), style, currentFont.getSize()));
+    }
+
+    private void setFontSize(String fontSize) {
+        int size = Integer.parseInt(fontSize);
+        Font currentFont = jtaNote.getFont();
+        jtaNote.setFont(new Font(currentFont.getName(), currentFont.getStyle(), size));
+    }
+
     public void setJFrame() {
         setBounds(300, 100, 800, 500);
         setVisible(true);
