@@ -3,9 +3,13 @@ package day0207;
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -16,11 +20,11 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
-public class FileCopy extends JFrame implements ActionListener {
+public class FileCopy3 extends JFrame implements ActionListener {
 	
 	private JLabel jlOutput;
 	
-	public FileCopy() {
+	public FileCopy3() {
 		super("파일 복사");
 		
 		JButton jbtnCopy = new JButton("복사할 파일 선택");
@@ -62,46 +66,33 @@ public class FileCopy extends JFrame implements ActionListener {
 		
 		File fileCopy = new File(tempFileName.toString());
 		
-		// 스트림 연결
+		// 16bit스트림 연결
+		// 읽기 가능 - 단순 txt, HTML, XML, json, java .... , 불가능 : 그외
 		// 읽기
-		FileInputStream fis = null;	// FileWriter 또는
+		BufferedReader br = null;
 		// 쓰기
-		FileOutputStream fos = null; // FileReader는 txt 파일만 가능
+		BufferedWriter bw = null;
 		
 		try {
-			fis = new FileInputStream(fileOrigin);
-			fos = new FileOutputStream(fileCopy);
+			br = new BufferedReader(new FileReader(fileOrigin));
+			bw = new BufferedWriter(new FileWriter(fileCopy));
 			
-			// HDD의 특성을 무시한 코드 -> 느리다
-			// 파일에서 읽어 들여 
-//			int data = 0;
-//			while((data = fis.read()) != -1) {
-//				// 복사할 파일의 연결된 스트림에 쓰고
-//				fos.write(data);
-//			}	// end while
-//			// 스트림에 남아있는 내용을 목적지 파일에 분출한다.
-//			fos.flush();
-			
-			// HDD의 특성을 고려한 코드
-			// 1. HDD는 한 번에 512byte를 읽어 들여오므로 그 값을 저장할 빈 배열을 생성
-			byte[] data = new byte[512];
-			// 2. HDD에서 읽어들인 내용을 빈 배열에 저장하고, 크기를 변수에 저장
-			int dataSize = 0;
-			while((dataSize = fis.read(data)) != -1) {
-				// 3. 배열의 값을 존재하는 크기까지만 스트림에 쓴다.
-				fos.write(data, 0, dataSize);
+			String temp = "";
+			// 줄단위로 읽어들여 (\n 전까지 읽어들인다.)
+			while((temp = br.readLine()) != null) {
+				// 읽어 들인 내용을 스트림에 기록
+				bw.write(temp);
 			}	// end while
-			// 4. 스트림에 남은 내용을 목적지 파일로 분출
-			fos.flush();
-		
+			// 스트림에 존재하는 내용을 목적지로 분출
+			bw.flush();
 			jlOutput.setText(fileCopy.getName() + "으로 복사가 잘 되었습니다.");
 		} finally {
 			// 연결을 끊는다.
-			if(fis != null) {
-				fis.close();
+			if(br != null) {
+				br.close();
 			}	// end if
-			if(fos != null) {
-				fos.close();
+			if(bw != null) {
+				bw.close();
 			}	// end if
 		}	// end finally
 	}	// fileCopy
@@ -117,7 +108,7 @@ public class FileCopy extends JFrame implements ActionListener {
 	}	// actionPerformed
 
 	public static void main(String[] args) {
-		new FileCopy();
+		new FileCopy3();
 	}	// main
 
 }	// class
