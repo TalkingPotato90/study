@@ -8,6 +8,7 @@ public class DoWhile {
             System.out.println("n = " + n);
             n--;
         } while (n > 0);
-        System.out.println("do");
+        System.out.println("do~while 그룹을 벗어난 후 n = " + n);
+        System.out.println();
     }
 }
