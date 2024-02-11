@@ -25,6 +25,9 @@ public class LogAnalyzerView extends JFrame {
         setLogView();
     }
 
+    /**
+     * 로그분석기 창 설정
+     */
     private void setFrame() {
         setTitle("sist 로그 분석기");
         setSize(330, 360);

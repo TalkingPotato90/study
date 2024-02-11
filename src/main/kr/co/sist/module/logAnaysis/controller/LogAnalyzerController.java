@@ -9,7 +9,7 @@ import java.util.Map;
  * 로그 분석 기능을 수행
  * 이 클래스의 각 메서드를 분담하여 구현
  */
-public class LogAnalyzer {
+public class LogAnalyzerController {
 
     public static List<Map<String, Object>> resultList = null;
 
