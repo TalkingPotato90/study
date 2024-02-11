@@ -1,20 +1,43 @@
 package kr.co.sist.module.login.controller;
 
+import kr.co.sist.module.login.vo.Login;
 import kr.co.sist.util.Validation;
+import kr.co.sist.view.logAnalysis.LogAnalyzerView;
+import kr.co.sist.view.login.LoginView;
 
 import javax.swing.*;
+import java.util.List;
+import java.util.Map;
 
 /**
  * login 기능을 전담할 controller
  */
 public class LoginController {
+    private String id,password;
+    private LoginEventController loginEventController;
+
+    public LoginController() {
+        setInputInfo();
+        checkEmpty();
+        confirmUserPassword();
+        loginEvent();
+    }
 
     /**
-     * 기능 1 : 유효성 검사
+     * id와 password를 입력받은 정보로 저장
+     */
+    public void setInputInfo(){
+        this.id = LoginEventController.inputId;
+        this.password = LoginEventController.inputPassword;
+    }
+
+    /**
+     * 기능 1 : 유효성 검사<br>
      * 설명 : 아이디와 비밀번호 값이 입력되어 있는지 확인한다.
      */
-    public void checkEmpty(String id, String password) {
+    public void checkEmpty() {
         Validation validator = new Validation();
+
         boolean idEmpty = validator.isEmpty(id);
         boolean passwordEmpty = validator.isEmpty(password);
 
@@ -24,18 +47,46 @@ public class LoginController {
     }
 
     /**
-     * 기능 2 : 비밀번호 일치 여부 확인
-     * 설명 : 입력된 아이디와 비밀번호가 일치하는지 확인한다.
+     * 기능 2 : 비밀번호 일치 여부 확인<br>
+     * 설명1 : 입력된 아이디와 비밀번호가 vo와 일치하는지 확인한다.<br>
+     * 설명2 : (입력된 아이디, 비밀번호) 비교 (목록으로 갖고 있는 데이터 리스트 userInfo)<br>
+     *  userInfo Type => List<Map<String, String>>, User Type => Map<String, String>
+     *
+     * 결과 : 일치하는 데이터가 있으면 true 리턴, 아니면 false 리턴
      */
+
+    public boolean confirmUserPassword(){
+        //입력받은 id, password와 특정 user정보 1개를 인자로 받아서 id와 password가 일치하는지 비교하고
+        //대상이 일치하면 true 리턴
+        Login login = new Login();
+        List<Map<String, String>> users = login.getUserInfo();
+
+        for(Map<String, String> user : users){
+            String userId = user.get("id");
+
+            if(id.equals(userId)){
+                //비밀번호 검증 로직
+                String userPassword = user.get("password");
+
+                if(password.equals(userPassword)){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
     /**
-     * 기능 3 : 로그인 버튼 클릭 이벤트
-     * 설명 : 로그인 버튼 클릭 시, 로그인 정보와 일치하면 메인화면으로 이동하고
+     * 기능 3 : 로그인 버튼 클릭 이벤트<br>
+     * 설명 : 로그인 버튼 클릭 시, 로그인 정보와 일치하면 메인화면으로 이동하고<br>
      *       비밀번호가 일치하지 않으면 확인을 위한 알림창을 출력한다.
      */
-
-    public static void main(String[] args) {
-        LoginController loginController = new LoginController();
-        loginController.checkEmpty("id","");
+    public void loginEvent(){
+        if(confirmUserPassword()){
+            SwingUtilities.invokeLater(LogAnalyzerView::new);
+        }else {
+            JOptionPane.showMessageDialog(null,"일치하는 정보가 없습니다. 아이디와 비밀번호를 확인하세요");
+        }
     }
 }

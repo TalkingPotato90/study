@@ -1,6 +1,5 @@
 package kr.co.sist.module.login.vo;
 
-import javax.swing.text.AbstractDocument;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,9 +17,9 @@ public class Login {
 
     public Login() {
         userInfo = new ArrayList<>();
-        setUserInfo("admin","1234","ADMIN");
-        setUserInfo("root","1111","NORMAL");
-        setUserInfo("administrator","12345","ADMIN");
+        setUserInfo("admin", "1234", "ADMIN");
+        setUserInfo("root", "1111", "NORMAL");
+        setUserInfo("administrator", "12345", "ADMIN");
     }
 
     /**
@@ -32,5 +31,9 @@ public class Login {
         user.put("password", password);
         user.put("authRole", authRole);
         userInfo.add(user);
+    }
+
+    public List<Map<String, String>> getUserInfo() {
+        return userInfo;
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 로그 분석 기능을 수행
+ * 로그 분석 기능을 수행<br>
  * 이 클래스의 각 메서드를 분담하여 구현
  */
 public class LogAnalyzerController {
@@ -14,9 +14,9 @@ public class LogAnalyzerController {
     public static List<Map<String, Object>> resultList = null;
 
     /**
-     * 기능 0 : 로그파일을 읽고 읽은 내용을 파싱한다.
-     * 설명 : [결과코드][URL][브라우저][생성일시]
-     * [index1][index2][index3][index4]
+     * 기능 0 : 로그파일을 읽고 읽은 내용을 파싱한다.<br>
+     * 설명 : [결과코드][URL][브라우저][생성일시]<br>
+     * [index1][index2][index3][index4]<br>
      *
      * @param : int(시작행) , int(종료행)
      */

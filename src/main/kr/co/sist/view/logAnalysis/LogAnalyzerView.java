@@ -31,7 +31,7 @@ public class LogAnalyzerView extends JFrame {
     private void setFrame() {
         setTitle("sist 로그 분석기");
         setSize(330, 360);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         panel = new JPanel();
@@ -53,6 +53,10 @@ public class LogAnalyzerView extends JFrame {
         partialAnalysisRadioButton = new JRadioButton("부분 분석");
         partialAnalysisRadioButton.setBounds(180, 20, 80, 25);
         panel.add(partialAnalysisRadioButton);
+
+        ButtonGroup bg =new ButtonGroup();
+        bg.add(fullAnalysisRadioButton);
+        bg.add(partialAnalysisRadioButton);
     }
 
     /**

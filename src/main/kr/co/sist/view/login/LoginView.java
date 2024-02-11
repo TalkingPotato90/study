@@ -1,5 +1,7 @@
 package kr.co.sist.view.login;
 
+import kr.co.sist.module.login.controller.LoginEventController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,15 +20,16 @@ public class LoginView extends JFrame {
         inputPassword();
         setLoginButton();
         setExitButton();
+        applyEvent();
     }
 
     /**
      * JFrame 창 셋팅
      */
-    private void setFrame(){
+    private void setFrame() {
         setTitle("sist 로그 분석기");
         setSize(300, 170);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         panel = new JPanel();
@@ -79,4 +82,30 @@ public class LoginView extends JFrame {
         panel.add(exitButton);
     }
 
+    /**
+     * 이벤트 등록
+     */
+    private void applyEvent() {
+        LoginEventController loginEventController = new LoginEventController(this);
+        loginButton.addActionListener(loginEventController);
+        exitButton.addActionListener(loginEventController);
+        userIdField.addActionListener(loginEventController);
+        passwordField.addActionListener(loginEventController);
+    }
+
+    public JButton getLoginButton() {
+        return loginButton;
+    }
+
+    public JButton getExitButton() {
+        return exitButton;
+    }
+
+    public JTextField getUserIdField() {
+        return userIdField;
+    }
+
+    public JTextField getPasswordField() {
+        return passwordField;
+    }
 }

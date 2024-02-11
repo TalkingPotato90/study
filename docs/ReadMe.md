@@ -58,3 +58,8 @@
   - c:/dev/report 폴더 생성
   - report_생성날짜.dat 파일 생성
   - 예외 : root 계정인 경우 불가 
+
+## 로그인 기능 흐름
+LoginView 실행 → LoginEventController에서 입력받은 정보 처리 → LoginController에서 검증
+- 정상 로그인 : LogAnalyzerView 호출
+- 오류 : 알림창 → LoginView 재실행
