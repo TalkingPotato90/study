@@ -19,7 +19,6 @@ public class LoginController {
     public LoginController() {
         setInputInfo();
         checkEmpty();
-        confirmUserPassword();
         loginEvent();
     }
 
@@ -60,7 +59,6 @@ public class LoginController {
         //대상이 일치하면 true 리턴
         Login login = new Login();
         List<Map<String, String>> users = login.getUserInfo();
-
         for(Map<String, String> user : users){
             String userId = user.get("id");
 

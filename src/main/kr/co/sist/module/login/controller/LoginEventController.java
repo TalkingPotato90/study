@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
  */
 public class LoginEventController extends WindowAdapter implements ActionListener {
     private LoginView loginView;
-    public static String inputId,inputPassword;
+    public static String inputId, inputPassword;
 
     public LoginEventController(LoginView loginView) {
         this.loginView = loginView;
@@ -21,18 +21,17 @@ public class LoginEventController extends WindowAdapter implements ActionListene
     @Override
     public void actionPerformed(ActionEvent ae) {
         // 로그인 버튼 클릭시 id와 password 값을 변수에 저장
-        if(ae.getSource()==loginView.getLoginButton()){
+        if (ae.getSource() == loginView.getLoginButton()) {
             inputId = loginView.getUserIdField().getText();
             inputPassword = loginView.getPasswordField().getText();
-            if(!inputId.isEmpty() && !inputPassword.isEmpty()) {
-                LoginController loginController = new LoginController();
-                if(loginController.confirmUserPassword()){
-                    loginView.dispose();
-                }
+            LoginController loginController = new LoginController();
+            if (loginController.confirmUserPassword()) {
+                loginView.dispose();
             }
+
         }
         // 종료 버튼 누르면 창 닫기
-        if (ae.getSource()==loginView.getExitButton()){
+        if (ae.getSource() == loginView.getExitButton()) {
             loginView.dispose();
         }
     }

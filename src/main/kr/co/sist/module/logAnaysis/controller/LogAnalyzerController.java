@@ -12,7 +12,9 @@ import java.util.Map;
 public class LogAnalyzerController {
 
     public static List<Map<String, Object>> resultList = null;
+public void parseLogFile(){
 
+}
     /**
      * 기능 0 : 로그파일을 읽고 읽은 내용을 파싱한다.<br>
      * 설명 : [결과코드][URL][브라우저][생성일시]<br>
@@ -56,7 +58,7 @@ public class LogAnalyzerController {
         for (Map<String, Object> one : resultList) {
             String url = (String) one.get("url");
             /* key 값을 찾는 로직 작성 */
-            String key = "";
+            String key = "java";
 
             keyInfo.put(key, keyInfo.get("key") + 1);
         }
