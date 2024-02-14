@@ -12,6 +12,9 @@ import java.awt.event.WindowEvent;
  */
 public class LoginEventController extends WindowAdapter implements ActionListener {
     private LoginView loginView;
+    /**
+     * 시간 남으면 싱글톤 처리
+     */
     public static String inputId, inputPassword;
 
     public LoginEventController(LoginView loginView) {
@@ -21,15 +24,18 @@ public class LoginEventController extends WindowAdapter implements ActionListene
     @Override
     public void actionPerformed(ActionEvent ae) {
         // 로그인 버튼 클릭시 id와 password 값을 변수에 저장
-        if (ae.getSource() == loginView.getLoginButton()) {
+        if (ae.getSource() == loginView.getLoginButton() || ae.getSource() == loginView.getUserIdField() || ae.getSource() == loginView.getPasswordField()) {
+            if (ae.getSource() != loginView.getLoginButton() && ae.getModifiers() != 0) {
+                return;
+            }
             inputId = loginView.getUserIdField().getText();
             inputPassword = loginView.getPasswordField().getText();
             LoginController loginController = new LoginController();
             if (loginController.confirmUserPassword()) {
                 loginView.dispose();
             }
-
         }
+
         // 종료 버튼 누르면 창 닫기
         if (ae.getSource() == loginView.getExitButton()) {
             loginView.dispose();
@@ -39,13 +45,5 @@ public class LoginEventController extends WindowAdapter implements ActionListene
     @Override
     public void windowClosing(WindowEvent we) {
         loginView.dispose();
-    }
-
-    public String getInputId() {
-        return inputId;
-    }
-
-    public String getInputPassword() {
-        return inputPassword;
     }
 }

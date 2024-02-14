@@ -72,7 +72,7 @@ public class LogAnalyzerView extends JFrame {
      * 시작 라인을 입력하는 칸
      */
     private void setStartRow() {
-        startRowLabel = new JLabel("시작 라인:");
+        startRowLabel = new JLabel("<html>시작 행 : <br>기본값 1</html>");
         startRowLabel.setBounds(20, 50, 80, 25);
         panel.add(startRowLabel);
 
@@ -85,7 +85,7 @@ public class LogAnalyzerView extends JFrame {
      * 끝 라인을 입력하는 칸
      */
     private void setEndRow() {
-        endRowLabel = new JLabel("끝 라인:");
+        endRowLabel = new JLabel("<html>시작 행 : <br>기본값 최대</html>");
         endRowLabel.setBounds(20, 80, 80, 25);
         panel.add(endRowLabel);
 

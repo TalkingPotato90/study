@@ -20,8 +20,9 @@ public class LogAnalyzerController {
     private String path;
 
     /**
-     * 기능 : util.FileUtil 에서 불러 온 파일의 데이터를 입력 받은 라인 수 범위내로 파싱
-     *       줄단위 데이터를 맵으로 구성하는 상세 로직은 parseLogLine()에서 진행
+     * 기능 : util.FileUtil 에서 불러 온 파일의 데이터를 입력 받은 라인 수 범위내로 파싱 <br>
+     *       줄단위 데이터를 맵으로 구성하는 상세 로직은 parseLogLine()에서 진행<br>
+     * 작성자 : 고한별
      * @param startRowNum 시작 행 번호
      * @param endRowNum 종료 행 번호
      */
@@ -41,9 +42,10 @@ public class LogAnalyzerController {
     }
 
     /**
-     * 가눙 : 파일의 데이터 한 줄을 대괄호 단위의 데이터로 파싱
-     * 설명 : [resultCode] [url]       [browser]    [createdDate]
-     *       [코드]        [실행데이터]  [브라우저]     [생성일시]
+     * 가눙 : 파일의 데이터 한 줄을 대괄호 단위의 데이터로 파싱<br>
+     * 설명 : [resultCode] [url]       [browser]    [createdDate]<br>
+     *       [코드]        [실행데이터]  [브라우저]     [생성일시]<br>
+     * 작성자 : 고한별
      * @param logLine
      * @return 파싱된 데이터 맵
      */
@@ -68,8 +70,9 @@ public class LogAnalyzerController {
     }
 
     /**
-     * resultCode 값 중에서 가장 많이 사용된 값의 이름과 횟수 저장
-     * @return
+     * 기능 : key 값 중에서 가장 많이 사용된 값의 이름과 횟수 저장<br>
+     * 작성자 : 고한별<br>
+     * @return 최다 사용 key와 횟수 맵
      */
     public Map<String, Object> getMaxUsedKeyInfo() {
         Map<String, Object> result = new HashMap<>();
@@ -101,6 +104,11 @@ public class LogAnalyzerController {
         return result;
     }
 
+    /**
+     * 기능 : 로그 파일의 생성 날짜 부분에서 시간을 추출하여 최다 요청 시간 확인<br>
+     * 작성자 : 진수현<br>
+     * @return 요청이 많은 시간 정보 맵
+     */
     public Map<String, Object> getMexUsedTime(){
         Map<Object, Integer> mexUsedTime = new HashMap<>();
 
@@ -111,7 +119,6 @@ public class LogAnalyzerController {
             Object createdDateValueEx = stChange.substring(stChange.indexOf(" "), stChange.indexOf(":"));
 
             if (createdDateValue != null) { // Null 체크 추가
-
                 mexUsedTime.put(createdDateValueEx, mexUsedTime.getOrDefault(createdDateValueEx, 0) + 1);
             }
         }

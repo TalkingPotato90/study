@@ -23,7 +23,10 @@ public class Login {
     }
 
     /**
-     * 입력받은 사용자 정보를 저장한 맵 생성
+     * 입력받은 사용자 정보를 기반으로 맵 생성
+     * @param id 아이디
+     * @param password 비밀번호
+     * @param authRole 권한 : NORMAL 권한은 Report 불가
      */
     public void setUserInfo(String id, String password, String authRole) {
         Map<String, String> user = new HashMap<>();

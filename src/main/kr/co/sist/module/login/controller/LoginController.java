@@ -76,15 +76,43 @@ public class LoginController {
     }
 
     /**
+     * 로그인 한 사용자의 권한이 관리자인지 일반인지 확인한다
+     * @return 관리자이면 true
+     */
+    public static boolean isAdmin(){
+        Login login = new Login();
+        List<Map<String, String>> userInfo = login.getUserInfo();
+
+        // 입력된 아이디와 비밀번호가 일치하는 사용자 정보를 찾음
+        for (Map<String, String> user : userInfo) {
+            String userId = user.get("id");
+            String userPassword = user.get("password");
+            String authRole = user.get("authRole");
+
+            // 입력된 아이디와 비밀번호가 일치하는 사용자를 찾았을 때
+            if (userId.equals(LoginEventController.inputId) && userPassword.equals(LoginEventController.inputPassword)) {
+                return authRole.equals("ADMIN");
+            }
+        }
+        // 입력된 아이디와 비밀번호에 해당하는 사용자 정보를 찾지 못했을 때
+        return false;
+    }
+
+    /**
      * 기능 3 : 로그인 버튼 클릭 이벤트<br>
-     * 설명 : 로그인 버튼 클릭 시, 로그인 정보와 일치하면 메인화면으로 이동하고<br>
+     * 설명 : 로그인 버튼 클릭 시, 로그인 정보와 일치하면 로그분석으로 이동하고<br>
      *       비밀번호가 일치하지 않으면 확인을 위한 알림창을 출력한다.
      */
-    public void loginEvent(){
-        if(confirmUserPassword()){
+    public void loginEvent() {
+        if (confirmUserPassword()) {
+            if (isAdmin()) {
+                JOptionPane.showMessageDialog(null, id + " 관리자 권한 로그인 성공");
+            } else {
+                JOptionPane.showMessageDialog(null, id + " 일반 권한 로그인 성공");
+            }
             SwingUtilities.invokeLater(LogAnalyzerView::new);
-        }else {
-            JOptionPane.showMessageDialog(null,"일치하는 정보가 없습니다. 아이디와 비밀번호를 확인하세요");
+        } else {
+            JOptionPane.showMessageDialog(null, "일치하는 정보가 없습니다. 아이디와 비밀번호를 확인하세요");
         }
     }
 }
