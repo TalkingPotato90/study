@@ -3,7 +3,6 @@ package kr.co.sist.view.login;
 import kr.co.sist.module.login.controller.LoginEventController;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * 로그인 정보를 받기 위한 화면

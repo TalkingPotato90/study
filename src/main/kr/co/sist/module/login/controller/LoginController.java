@@ -3,7 +3,6 @@ package kr.co.sist.module.login.controller;
 import kr.co.sist.module.login.vo.Login;
 import kr.co.sist.util.Validation;
 import kr.co.sist.view.logAnalysis.LogAnalyzerView;
-import kr.co.sist.view.login.LoginView;
 
 import javax.swing.*;
 import java.util.List;

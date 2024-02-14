@@ -1,7 +1,6 @@
 package kr.co.sist.view.logAnalysis;
 
 import kr.co.sist.module.logAnaysis.controller.LogAnalyzerEventController;
-import kr.co.sist.module.login.controller.LoginEventController;
 
 import javax.swing.*;
 
@@ -85,7 +84,7 @@ public class LogAnalyzerView extends JFrame {
      * 끝 라인을 입력하는 칸
      */
     private void setEndRow() {
-        endRowLabel = new JLabel("<html>시작 행 : <br>기본값 최대</html>");
+        endRowLabel = new JLabel("<html>종료 행 : <br>기본값 최대</html>");
         endRowLabel.setBounds(20, 80, 80, 25);
         panel.add(endRowLabel);
 

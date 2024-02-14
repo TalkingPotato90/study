@@ -4,6 +4,7 @@ import kr.co.sist.util.FileUtil;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -105,9 +106,74 @@ public class LogAnalyzerController {
     }
 
     /**
-     * 기능 : 로그 파일의 생성 날짜 부분에서 시간을 추출하여 최다 요청 시간 확인<br>
-     * 작성자 : 진수현<br>
-     * @return 요청이 많은 시간 정보 맵
+     * 기능 : 브라우저별 사용 횟수와 비율<br>
+     * 작성자 : 양수민
+     * @return
+     */
+    public  Map<String, Object> getBrInfo() {
+        int ieCnt = 0;
+        int chCnt = 0;
+        int totalCnt=0;
+
+        Map<String, Object> result = new HashMap<>();
+
+        // resultList의 모든 맵을 반복하여 특정 키에 해당하는 값을 전부 구합니다.
+        for (Map<String, Object> map : resultList) {
+            String createdDateValue = (String)map.get("browser");
+
+            if (createdDateValue != null) {
+                // 브라우저 정보가 있는 경우만 처리
+                if (createdDateValue.equals("ie")) {
+                    ieCnt++;
+                } else if(createdDateValue.equals("Chrome")){
+                    chCnt++;
+                }
+            }
+        }//end if
+
+        totalCnt = ieCnt+chCnt;
+
+        double iePercent= (double)ieCnt / (double)totalCnt * 100;
+        double iePercent2= (double)chCnt / (double) totalCnt * 100;
+
+        result.put("Chrome", chCnt +", "+ (int)iePercent2+"%");
+        result.put("ie", ieCnt + ", "+(int)iePercent+"%");
+
+        return result;
+    }
+
+
+    /**
+     * 기능 : 서비스를 성공적으로 수행한 횟수와 실패한 횟수<br>
+     * 작성자 : 김일신
+     * @return
+     */
+    public Map<String, Object> serviceStatusCount() {
+        Map<String, Object> result = new HashMap<>();
+
+        int successCount = 0;
+        int failCount = 0;
+
+        for (Map<String, Object> num : resultList) {
+            String resultCode = (String) num.get("resultCode"); // 결과 코드를 문자열로 변환
+
+            if ("200".equals(resultCode)) { // 문자열 비교로 변경
+                successCount++;
+            } else if ("404".equals(resultCode)) { // 문자열 비교로 변경
+                failCount++;
+            }
+        }
+
+        result.put("성공", successCount);
+        result.put("실패", failCount);
+
+        return result;
+    }
+
+    /**
+     * 기능 : 요청이 가장 많은 시간 찾기<br>
+     * 작성자 : 진수현
+     * @return
      */
     public Map<String, Object> getMexUsedTime(){
         Map<Object, Integer> mexUsedTime = new HashMap<>();
@@ -139,5 +205,71 @@ public class LogAnalyzerController {
         return result;
     }
 
-// 나머지 기능 구현 필요
+
+    /**
+     * 기능 : 비정상적인 요청이 발생한 횟수와 비율 구하기<br>
+     * 작성자 : 김도원
+     * @return
+     */
+    public Map<String, Object> getCount403(){
+        //선언
+        Map<String,Integer> countMap = new HashMap<>();
+        //값의 횟수를 계산하여 countMap에 저장
+
+        int times = 0;
+        for (Map<String, Object> map : resultList) {
+            times++;
+            Object createdDateValue = map.get("resultCode");
+            if(createdDateValue.equals("403")) {
+                String sortedvalue = (String)createdDateValue;
+                countMap.put(sortedvalue, countMap.getOrDefault(sortedvalue, 0)+1);
+            }//if
+        }//for
+
+        int countedTimes = 0;
+        for(Map.Entry<String, Integer> entry : countMap.entrySet()) {
+            countedTimes = entry.getValue();
+
+        }//end for
+        DecimalFormat df = new DecimalFormat("#.##");
+        Map<String, Object> result = new HashMap<>();
+        result.put("count", countedTimes);
+        result.put("countPercent", df.format((double)countedTimes/times*100));
+
+        return result;
+    }//print403Count
+
+    /**
+     * 기능 : books에 대한 요청중 url 에러가 발생한 횟수와 비율<br>
+     * 작성자 : 김현종
+     * @return
+     */
+    public Map<String, Object> getCountBooksAnd500(){
+
+        //값의 횟수를 계산하여 countMap에 저장
+        int bookCount = 0;
+        int sameCount = 0;
+
+        for (Map<String, Object> map : resultList) {
+            Object createdDateValue = map.get("resultCode");
+            Object createdDateValue2 = map.get("url");
+
+            if(createdDateValue.equals("500") && createdDateValue2.toString().contains("books")) {
+                sameCount++;
+            }
+        }
+        for (Map<String, Object> map : resultList) {
+            Object createdDateValue = map.get("url");
+            if(createdDateValue.toString().contains("books")) {
+                bookCount++;
+            }
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        DecimalFormat df = new DecimalFormat("#.##");
+        result.put("count", sameCount);
+        result.put("countPercent",  df.format((double)sameCount/bookCount*100));
+
+        return result;
+    }
 }
