@@ -1,5 +1,8 @@
 package kr.co.sist.view.logAnalysis;
 
+import kr.co.sist.module.logAnaysis.controller.LogAnalyzerEventController;
+import kr.co.sist.module.login.controller.LoginEventController;
+
 import javax.swing.*;
 
 /**
@@ -23,6 +26,10 @@ public class LogAnalyzerView extends JFrame {
         setReportButton();
         setLogoutButton();
         setLogView();
+        applyEvent();
+
+        partialAnalysisRadioButton.addActionListener(e -> enablePartialAnalysis());
+        disablePartialAnalysis();
     }
 
     /**
@@ -57,6 +64,8 @@ public class LogAnalyzerView extends JFrame {
         ButtonGroup bg =new ButtonGroup();
         bg.add(fullAnalysisRadioButton);
         bg.add(partialAnalysisRadioButton);
+
+        fullAnalysisRadioButton.setSelected(true);
     }
 
     /**
@@ -122,4 +131,59 @@ public class LogAnalyzerView extends JFrame {
         panel.add(scrollPane);
     }
 
+    public void enablePartialAnalysis() {
+        startRowField.setEnabled(true);
+        endRowField.setEnabled(true);
+    }
+
+    public void disablePartialAnalysis() {
+        startRowField.setEnabled(false);
+        endRowField.setEnabled(false);
+    }
+
+    /**
+     * 이벤트 등록
+     */
+    private void applyEvent() {
+        LogAnalyzerEventController logAnalyzerEventController = new LogAnalyzerEventController(this);
+        fullAnalysisRadioButton.addActionListener(logAnalyzerEventController);
+        partialAnalysisRadioButton.addActionListener(logAnalyzerEventController);
+        startRowField.addActionListener(logAnalyzerEventController);
+        endRowField.addActionListener(logAnalyzerEventController);
+        viewButton.addActionListener(logAnalyzerEventController);
+        reportButton.addActionListener(logAnalyzerEventController);
+        logoutButton.addActionListener(logAnalyzerEventController);
+    }
+
+    public JRadioButton getFullAnalysisRadioButton() {
+        return fullAnalysisRadioButton;
+    }
+
+    public JRadioButton getPartialAnalysisRadioButton() {
+        return partialAnalysisRadioButton;
+    }
+
+    public JTextField getStartRowField() {
+        return startRowField;
+    }
+
+    public JTextField getEndRowField() {
+        return endRowField;
+    }
+
+    public JButton getViewButton() {
+        return viewButton;
+    }
+
+    public JButton getReportButton() {
+        return reportButton;
+    }
+
+    public JButton getLogoutButton() {
+        return logoutButton;
+    }
+
+    public JTextArea getResultTextArea() {
+        return resultTextArea;
+    }
 }

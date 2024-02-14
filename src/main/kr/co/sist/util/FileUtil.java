@@ -1,11 +1,14 @@
 package kr.co.sist.util;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,12 +36,5 @@ public class FileUtil {
     /**
      * 외부 파일 저장
      */
-    public static void main(String[] args) {
-        FileUtil fileUtil = new FileUtil();
-        Path filePath = Paths.get("C:/Users/potatomoong/Desktop/sist_input_1.log");
-        List<String> fileContents = fileUtil.loadFile(filePath);
-        for (String line : fileContents) {
-            System.out.println(line);
-        }
-    }
+
 }
