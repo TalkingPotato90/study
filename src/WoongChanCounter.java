@@ -41,7 +41,7 @@ public class WoongChanCounter extends JFrame implements ActionListener {
             nameButton[i].setIcon(scaledIcon);
             nameButton[i].setText("");
 
-            counterLabel[i].setBounds(300, startY + i * (buttonHeight + 20), 100, 50);
+            counterLabel[i].setBounds(300, startY + i * (buttonHeight + 20), 120, 50);
 
             add(counterLabel[i]);
             add(nameButton[i]);
