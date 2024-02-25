@@ -2,35 +2,35 @@ package chapter09;
 
 // 접근 제한자를 지정하지 않아서 default
 // 같은 패키지 안의 클래스에서 언제든지 변수에 접근하여 사용 가능
-class Student1{
+class Student1 {
     String name;
     int age;
 }
 
 // name 변수는 public, age 변수는 private
-class Student2{
+class Student2 {
     public String name;
     // private 멤버 변수
     // 다른 클래스에서 접근 불가
     private int age;
 
-    public  Student2(String name, int age){
+    public Student2(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
     // 게터
     // private 변수의 값을 다른 클래스에서 가져갈 수 있게 제공
-    public int getAge(){
+    public int getAge() {
         return age;
     }
 
     // 세터
     // private 변수의 값을 다른 클래스에서 대입할 수 있게 제공
-    public void setAge(int age){
+    public void setAge(int age) {
         // 유효성 검사
         // 부적절한 나이를 대입하지 못하게 체크
-        if (age < 0 || age > 150){
+        if (age < 0 || age > 150) {
             System.out.println("나이가 부적절합니다.");
             this.age = 0;
             return;
@@ -38,6 +38,7 @@ class Student2{
         this.age = age;
     }
 }
+
 public class PrivateUse {
     public static void main(String[] args) {
         // default 상태라 접근 가능
