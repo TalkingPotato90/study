@@ -18,7 +18,7 @@ public class TestConnection {
             System.out.println("드라이버 로딩 성공!!!");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }	// end catch
+        }    // end catch
 
         // 2. 로딩된 드라이버를 사용하여 Connection 얻기
         String url = "jdbc:oracle:thin:@127.0.0.1:1521:orcl";
@@ -58,19 +58,19 @@ public class TestConnection {
 
         } finally {
             // 5. 연결 끊기
-            if(con != null) {
+            if (con != null) {
                 con.close();
-            }	// end if
-        }	// end finally
+            }    // end if
+        }    // end finally
 
-    }	// TestConnection
+    }    // TestConnection
 
     public static void main(String[] args) {
         try {
             new TestConnection();
         } catch (SQLException e) {
             e.printStackTrace();
-        }	// end catch
-    }	// main
+        }    // end catch
+    }    // main
 
-}	// class
+}    // class
