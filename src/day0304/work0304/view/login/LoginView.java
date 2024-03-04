@@ -42,7 +42,6 @@ public class LoginView extends JFrame {
         idField = new JTextField();
         idField.setBounds(120, 30, 130, 20);
         getContentPane().add(idField);
-        idField.setColumns(10);
     }
 
     /**

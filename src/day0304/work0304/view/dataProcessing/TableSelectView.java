@@ -59,7 +59,6 @@ public class TableSelectView extends JFrame {
         whereField = new JTextField();
         whereField.setBounds(110, 50, 130, 30);
         getContentPane().add(whereField);
-        whereField.setColumns(10);
     }
 
     /**

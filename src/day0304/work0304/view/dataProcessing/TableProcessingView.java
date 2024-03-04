@@ -1,8 +1,10 @@
 package day0304.work0304.view.dataProcessing;
 
-import day0304.work0304.controller.dataProcessing.TableProcessinglEventController;
+import day0304.work0304.controller.dataProcessing.TableProcessingEventController;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 /**
  * 로그인에 성공했을 때 계정이 가진 테이블에 대한 create,select,alter,drop 수행할 수 있는 view
@@ -88,17 +90,34 @@ public class TableProcessingView extends JFrame {
      */
     private void setTable() {
         table = new JTable();
-        table.setBounds(30,50,300,460);
-        getContentPane().add(table);
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(30,50,300,460);
+        getContentPane().add(scrollPane);
     }
 
+    /**
+     * 조회된 테이블명 JTable에 추가하기
+     * @param listAllTab 로그인 한 계정이 가지고 있는 테이블 목록
+     */
+    public void setTable(List<String> listAllTab) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Table Name");
+
+        for (String tableName : listAllTab) {
+            model.addRow(new Object[]{tableName});
+        }
+
+        table.setModel(model);
+    }
+
+    // 이벤트 등록
     private void setEvent(){
-        TableProcessinglEventController tableProcessinglEventController = new TableProcessinglEventController(this);
-        createButton.addActionListener(tableProcessinglEventController);
-        selectButton.addActionListener(tableProcessinglEventController);
-        alterButton.addActionListener(tableProcessinglEventController);
-        dropButton.addActionListener(tableProcessinglEventController);
-        logoutButton.addActionListener(tableProcessinglEventController);
+        TableProcessingEventController tableProcessingEventController = new TableProcessingEventController(this);
+        createButton.addActionListener(tableProcessingEventController);
+        selectButton.addActionListener(tableProcessingEventController);
+        alterButton.addActionListener(tableProcessingEventController);
+        dropButton.addActionListener(tableProcessingEventController);
+        logoutButton.addActionListener(tableProcessingEventController);
     }
 
     public JButton getCreateButton() {
