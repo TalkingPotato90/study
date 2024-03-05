@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import kr.co.sist.statement.dao.StatementDAO;
-import kr.co.sist.statement.vo.EmployeeVO;
+import kr.co.sist.vo.EmployeeVO;
 
 /**
  * CRUD를 사용하는 클래스

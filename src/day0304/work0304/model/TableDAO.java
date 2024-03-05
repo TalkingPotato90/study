@@ -1,7 +1,6 @@
 package day0304.work0304.model;
 
-import kr.co.sist.dao.Dbconnection;
-import kr.co.sist.statement.vo.EmployeeVO;
+import kr.co.sist.dao.DbConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +25,7 @@ public class TableDAO {
     public List<String> selectAllTab() throws SQLException {
         List<String> list = new ArrayList<>();
 
-        Dbconnection dbconnection = Dbconnection.getInstance();
+        DbConnection dbconnection = DbConnection.getInstance();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

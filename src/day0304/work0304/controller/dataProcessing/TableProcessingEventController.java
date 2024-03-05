@@ -4,8 +4,6 @@ import day0304.work0304.model.TableDAO;
 import day0304.work0304.view.dataProcessing.TableProcessingView;
 import day0304.work0304.view.dataProcessing.TableSelectView;
 import day0304.work0304.view.login.LoginView;
-import kr.co.sist.prepared.dao.preparedStatementDAO;
-import kr.co.sist.statement.vo.EmployeeVO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -52,7 +50,7 @@ public class TableProcessingEventController extends WindowAdapter implements Act
         tableProcessingView.dispose();
     }
 
-    private void loadTableName(){
+    private void loadTableName() {
         TableDAO tableDAO = TableDAO.getInstance();
 
         try {
@@ -60,9 +58,8 @@ public class TableProcessingEventController extends WindowAdapter implements Act
 
             if (listAllTab.isEmpty()) {
                 JOptionPane.showMessageDialog
-                        (null,"데이터가 없습니다. 'ㅁ'",
-                                "ERROR",JOptionPane.ERROR_MESSAGE);
-
+                        (null, "데이터가 없습니다. 'ㅁ'",
+                                "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
                 for (String tableName : listAllTab) {
                     tableProcessingView.setTable(listAllTab);

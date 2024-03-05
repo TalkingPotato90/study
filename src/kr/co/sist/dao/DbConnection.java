@@ -9,17 +9,17 @@ import java.sql.Statement;
 /**
  * Singleton pattern을 사용한 DBMS connection 관리 클래스
  */
-public class Dbconnection {
+public class DbConnection {
 	//
-	private static Dbconnection dbCon;
+	private static DbConnection dbCon;
 	
-	private Dbconnection() {
+	private DbConnection() {
 		
 	}//Dbconnection
 	
-	public static Dbconnection getInstance() {
+	public static DbConnection getInstance() {
 		if(dbCon == null) { // 최초 호출이거나, 사용중에 객체가 죽었다면 if를 탄다.
-			dbCon = new Dbconnection();
+			dbCon = new DbConnection();
 		}//end if
 		return dbCon;
 	}//getInstance
@@ -63,6 +63,4 @@ public class Dbconnection {
 			if(con != null) {con.close();}
 		}//end finally
 	}//dbClose
-
-	
 }//class

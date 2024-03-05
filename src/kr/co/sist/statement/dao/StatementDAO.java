@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import kr.co.sist.statement.vo.EmployeeVO;
+import kr.co.sist.vo.EmployeeVO;
 
 public class StatementDAO {
 

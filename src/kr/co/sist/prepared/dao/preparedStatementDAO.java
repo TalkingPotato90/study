@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.co.sist.dao.Dbconnection;
-import kr.co.sist.statement.vo.EmployeeVO;
+import kr.co.sist.dao.DbConnection;
+import kr.co.sist.vo.EmployeeVO;
 
 public class preparedStatementDAO {
     private static preparedStatementDAO psDAO;
@@ -27,7 +27,7 @@ public class preparedStatementDAO {
     }// getInstance
 
     public void insertEmp(EmployeeVO eVO) throws SQLException {
-        Dbconnection dbCon = Dbconnection.getInstance();
+        DbConnection dbCon = DbConnection.getInstance();
         // 1.드라이버 로딩
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -59,7 +59,7 @@ public class preparedStatementDAO {
 
     public int updateEmp(EmployeeVO eVO) throws SQLException {
         int cnt = 0;
-        Dbconnection dbCon = Dbconnection.getInstance();
+        DbConnection dbCon = DbConnection.getInstance();
         // 1.
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -95,7 +95,7 @@ public class preparedStatementDAO {
     public int deleteEmp(int empno) throws SQLException {
         int cnt = 0;
 
-        Dbconnection dbconnection = Dbconnection.getInstance();
+        DbConnection dbconnection = DbConnection.getInstance();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -119,7 +119,7 @@ public class preparedStatementDAO {
 
     public EmployeeVO selectOneEmp(int empno) throws SQLException {
         EmployeeVO employeeVO = null;
-        Dbconnection dbconnection = Dbconnection.getInstance();
+        DbConnection dbconnection = DbConnection.getInstance();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -156,7 +156,7 @@ public class preparedStatementDAO {
     public List<EmployeeVO> selectAllEmp() throws SQLException{
         List<EmployeeVO> list = new ArrayList<EmployeeVO>();
 
-        Dbconnection dbconnection = Dbconnection.getInstance();
+        DbConnection dbconnection = DbConnection.getInstance();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

@@ -38,7 +38,7 @@
   - 테이블 목록 조회
   - 로그아웃
 ### 2. 데이터베이스 연결
-- kr.co.sist.dao.Dbconnection 활용
+- kr.co.sist.dao.DbConnection 활용
 - 입력받은 정보를 토대로 id, password 사용
 ### 3. 데이터 조회
 - 조회버튼 클릭시 쿼리문(select * from tab;) 처리
