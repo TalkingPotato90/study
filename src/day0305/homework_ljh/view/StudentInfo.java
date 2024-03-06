@@ -111,7 +111,7 @@ public class StudentInfo extends JFrame {
 
         this.imgName = StudentInfoEvent.selectImgName;
         System.out.println(imgName);
-        ImageIcon img = new ImageIcon("D:/dev/src/sist-jdbc-prj/src/day0305/homework/img/" + imgName);
+        ImageIcon img = new ImageIcon("D:/dev/src/sist-jdbc-prj/src/day0305/homework_ljh/img/" + imgName);
 
         jlbImg2 = new JLabel(img);
 
