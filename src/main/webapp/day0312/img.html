@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!--이미지는 절대경로를 사용할 수 없다.-->
+<!--<img src ="C:\dev\html_prj\src\main\webapp\day0312\images\daum_logo.png">-->
+<!--상대경로: img를 가지고있는 html에서 필요한 URL 부분부터 사용한다.-->
+<img src="images/daum_logo.png"> <br/>
+<img src="../common/images/img1.png"> <br/>
+
+<strong>같은 경로에 존재</strong><br/>
+<img src="img4.png">
+
+<h2>URL</h2>
+<img src="http://localhost/html_prj/common/images/img1.png"><br/>
+
+
+<h2>크기변경</h2>
+<!--width 속성이나 height 속성중 하나만 사용하더라도 비율에 맞춰 변경된다.-->
+원본
+<img src="http://192.168.10.221/html_prj/common/images/img.jpg"/><br/>
+<img src="http://192.168.10.221/html_prj/common/images/img.jpg" width="300px"/><br/>
+풍선 도움말
+<img src="http://192.168.10.221/html_prj/common/images/img.jpg" title="7강의장 반장 윤웅찬!!!"/><br/>
+엑박메세지
+<img src="http://192.168.10.221/html_prj/common/images/img.jpg1" alt="7강의장 반장 윤웅찬!!!" /><br/>
+테두리
+<img src="http://192.168.10.221/html_prj/common/images/img.jpg" border="100" /><br/>
+
+
+
+
+</body>
+</html>
