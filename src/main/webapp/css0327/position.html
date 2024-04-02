@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>position</title>
+	<style type = "text/css">
+		#wrap{ width : 400px; height : 600px; background-color : #BABFBA;
+			   position: relative; top : 100px; left : 200px; }
+			   
+		/* fixed는 감싸고 있는 relatvie의 영향을 받지 않는다 */
+		#fix{ width : 100px; height : 300px; background-color: #FFDC78;
+			  position : fixed; top : 100px; left : 300px; }
+			  
+		/* absolute는 감싸고 있는 relatvie의 영향을 받는다 */
+		#abs{ width : 300px; height : 300px; background-color: #FF0000;
+			  position : absolute; top : 80px; left : 100px; }
+	</style>
+</head>
+<body>
+	<div id = "wrap">
+		<div id = "fix">fixed</div>
+		<div id = "abs">absolute</div>
+	</div>
+</body>
+</html>

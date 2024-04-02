@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>operator</title>
+	<style type = "text/css">
+		
+	</style>
+	<script type = "text/javascript">
+		// 느슨한 비교를 막기 위한 관계 연산자 
+		var temp = 4;
+		var temp2 = "4";
+		console.log(typeof(temp) + "/" + typeof(temp2));
+		
+		// 느슨한 비교 : 값만 같은지 
+		document.write(temp + " == " + temp2 + " = " + (temp == temp2) + "<br>");
+		
+		// 데이터 형과 값이 모두 같을 때에만 true
+		document.write(temp + " === " + temp2 + " = " + (temp === temp2) + "<br>");
+		
+		temp = 4;
+		temp2 = 1;
+		document.write(temp + " == " + temp2 + " = " + (temp == temp2) + "<br>");
+		document.write(temp + " === " + temp2 + " = " + (temp === temp2) + "<br>");
+	</script>
+</head>
+<body>
+
+</body>
+</html>

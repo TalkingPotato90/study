@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>border</title>
+	<style type = "text/css">
+	/* 테두리 선을 변경 실선-solid, 점선-dotted, 긴점선-dashed, 이중선-double(3px부터 가능) */
+	#all{ border : 1px dashed #333 }
+	#left{ border-left : 5px solid #FF0000 }
+	#top{ border-top : 3px dashed royalblue }
+	#right{ border-right: 5px dotted seagreen }
+	#bottom{ border-bottom: 3px double slategray}
+	
+	/* 기존에 설정된 border를 해제할 때 */
+	img{ border : 0px }
+	
+	#textAll{ border : 1px solid #03A94D }
+	#textBottom{ border-left : 0px; border-top : 0px; border-right : 0px; border-bottom: 1px solid #DEDEDE;}
+	</style>
+</head>
+<body>
+	<div id = "all">전체 선 변경</div>
+	<div id = "left">왼쪽 선 변경</div>
+	<div id = "top">위쪽 선 변경</div>
+	<div id = "right">오른쪽 선 변경</div>
+	<div id = "bottom">아래쪽 선 변경</div>
+	
+	<a href = "#void"><img src = "../common/images/img1.png"></a><br>
+	
+	<input type = "text" id = "textAll"><br>
+	<input type = "text" id = "textBottom">
+	<table>
+		<tr>
+			<th>번호</th>
+			<th>이름</th>
+			<th>이메일</th>
+		</tr>
+		
+		<tr>
+			<td>1</td>
+			<td>진수현</td>
+			<td>jinsu@test.com</td>
+		</tr>
+
+		<tr>
+			<td>2</td>
+			<td>윤웅찬</td>
+			<td>chan@daum.net</td>
+		</tr>
+
+		<tr>
+			<td>3</td>
+			<td>김동섭</td>
+			<td>sub@gmail.com</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>tag selector</title>
+	<style type = "text/css">
+		/* tag selector : 모든 tag에 디자인이 적용되어야 할 때 */
+		div { font-family: 궁서체; }
+		
+		li, p, label { color: cadetblue; }
+	</style>
+</head>
+<body>
+	<div>body &gt; div가 바로 나온 경우</div>
+	<a href = "#void">어디로 가지?</a>
+	<table border = "1">
+		<tr>
+			<th>이름<br>주소</th>
+		</tr>
+		
+		<tr>
+			<td>
+				<div>table &gt; tr &gt; td &gt; 에 div가 나온 경우 윤웅찬</div>
+				<div>경기도 수원시 영통구 영통동</div>
+			</td>
+		</tr>
+	</table>
+	
+	<ul>
+		<li>Java SE 17</li>
+		<li>Oracle DBMS 19c</li>
+		<li>JDBC</li>
+		<li>HTML5</li>
+		<li>CSS3</li>
+	</ul>
+	
+	<p>
+		HTML (Hyper Text Markup Language)
+	</p>
+	
+	<label>
+		CSS (Cascading Style Sheet)
+	</label>
+</body>
+</html>

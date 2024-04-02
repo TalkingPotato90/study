@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML5에서 추가된 Form Control들</title>
+</head>
+<body>
+	<inputdiv>
+		<label>날짜 </label><input type = "date" value = "2024-07-12"/><br>
+		<label>월 </label><input type = "month" value = "2024-07"/><br>
+		<label>년월일 시간 </label><input type = "datetime-local"/><br>
+		
+		<!-- 브라우저에서 지원하지 않는 HTML Form Control은 input type = "text"로 보여진다. -->
+		<label>년월일 시간 </label><input type = "datetime"/><br>
+		<label>시간 </label><input type = "time"/><br>
+		<label>색 </label><input type = "color" value = "#FF0000"/><br>
+		
+		<!-- text와 동일하게 보여지며 의미적인 용도로 사용하는 태그들 -->
+		<label>전화번호 </label><input type = "tel" name = "tel"/><br>
+		<label>이메일 </label><input type = "email" name = "email"/><br>
+		<label>url </label><input type = "url" name = "url"/><br>
+		
+		<label>범위 설정 </label>0<input type = "range" name = "range" min = "0" max = "100" value = "80"/>100<br>
+		
+		<laber>범위 </laber>0<meter min = "0" max = "100" value = "60">60</meter>100<br>
+	</div>
+</body>
+</html>

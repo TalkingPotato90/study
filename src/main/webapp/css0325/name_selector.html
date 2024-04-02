@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>name selector</title>
+	<style type = "text/css">
+		/* 속성 = "값"을 가진 모든 태그에 디자인을 적용해야할 때 사용하는 selector */
+		/* [type = 'text'] { font-size: 30px; } */
+		/* [class = 'test'] { font-size: 30px; } */
+		/* [name = 'addr'] { font-size: 30px; } */
+		
+		/* multiple selector */
+		[name = 'addr'], [name = 'addr1'], [name = 'addr2'] { font-size: 30px; }
+	</style>
+</head>
+<body>
+	<label>이름</label><input type = "text" class = "test" name = "name"><br>
+	<label>나이</label><input type = "password" class = "test" name = "age"><br>
+	<label>주소</label><input type = "text" class = "test" name = "addr"><br>
+	<label>주소2</label><input type = "text" class = "test" name = "addr"><br>
+	<label>성별</label><input type = "radio" value = "남" name = "gender"><label name = "addr">남자</label> | 
+					 <input type = "radio" value = "여" name = "gender" checked = "checked">여자<br>
+	<span name = "addr">서울시 강남구 역삼동</span>
+	
+	<div name = "addr1">인천시 부평구 부평동</div>
+	<div name = "addr2">수원시 영통구 망포동</div>
+	<div name = "addr1">인천시 남동구 구월동</div>
+</body>
+</html>

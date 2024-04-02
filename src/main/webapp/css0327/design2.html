@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>design2</title>
+	<style type = "text/css">
+		#wrap{ width : 1000px; height : 1200px; background-color : #FF0000; margin : 0px auto; }
+		
+		#header{ height : 200px; background-color : #333; }
+		
+		#container{ height : 900px; background-color : darkgoldenrod;}
+		#left{ width : 400px; height: 900px; background-color: pink; float: left; }
+		#right{ width : 600px; height: 900px; background-color: skyblue; float: right; }
+		
+		#footer{ height : 100px; background-color : darkkhaki; }
+	</style>
+</head>
+<body>
+	<div id = "wrap">
+<!--		wrap (w - 1000px, h - 1200px)-->
+		<div id = "header">header (w - 1000px, h - 200px)</div>
+		<div id = "container"><!--container (w - 1000px, h - 900px)-->
+			<div id = "left">left(w - 400px, h - 900px)</div>
+			<div id = "right">right(w - 600px, h - 900px)</div>
+		</div>
+		<div id = "footer">footer (w - 1000px, h - 100px)</div>
+	</div>
+</body>
+</html>

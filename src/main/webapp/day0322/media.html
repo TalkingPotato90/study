@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>미디어 파일 재생</title>
+</head>
+<body>
+	<!-- <label>음악: </label><embed src = "media/audio.mp3"/> -->
+	<!-- <label>동영상 : </label><embed src = "media/video.mp4" width = "400" height = "500" controller = "true"/> -->
+	
+	<div>
+		<audio controls = "controls" autoplay = "autoplay">
+			<source src = "media/audio.mp3"/>
+		</audio>
+	</div>
+	
+	<div>
+		<video controls = "controls" width = "400" height = "500" poster = "../common/images/img.jpg">
+			<source src = "media/video.mp4"/>
+		</video>
+	</div>
+</body>
+</html>

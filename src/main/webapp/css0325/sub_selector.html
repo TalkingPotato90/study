@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>sub selector</title>
+	<style type = "text/css">
+		/* sub selector : 특정 태그의 구조를 가진 경우에만 디자인을 적용할 때 */
+		/* div > span { color: #FF0000; } */
+		
+		ul > li > div > span{ color: #FF0000; }
+	</style>
+</head>
+<body>
+	내 이름은 <span>윤웅찬</span>입니다.<br>
+	<div>
+		오늘은 <span>월요일</span>입니다.		
+	</div>
+	
+	<ul>
+		<li>
+			<div>
+				내일은 <span>화요일</span>입니다.
+			</div>
+		</li>
+	</ul>
+	
+	<table>
+		<tr>
+			<td>
+				<span>비오는 월요일 입니다.</span>
+				<div><span>내일도 비가 올까요?</span></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
