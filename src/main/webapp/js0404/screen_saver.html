@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript" src="/js/jquery/jquery-3.7.1.min.js"></script>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            background: #eee;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+<body>
+<div>
+    <h1>Canvas</h1>
+</div>
+
+<canvas id="myCanvas" width="1000" height="700"></canvas>
+
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var x = canvas.width / 2;
+    var y = canvas.height - 30;
+    var dx = 2;
+    var dy = -2;
+    var interval;
+    var speed = 1;
+    var x_min = 5;
+    var x_max = canvas.width - 5;
+    var y_min = 5;
+    var y_max = canvas.height - 5;
+
+    function drawBall() {
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, Math.PI * 2);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function drawRightUp() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBall();
+
+        x += dx;
+        y += dy;
+
+        if (x > x_max) {
+            interval = clearInterval(interval);
+            interval = setInterval(drawLeftUp, speed);
+        }
+
+
+        if (y_min > y) {
+            interval = clearInterval(interval);
+            interval = setInterval(drawRightDown, speed);
+        }
+
+    }
+
+    function drawRightDown() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBall();
+
+        x += dx;
+        y -= dy;
+
+
+        if (x > x_max) {
+            interval = clearInterval(interval);
+            interval = setInterval(drawLeftDown, speed);
+        }
+
+
+        if (y > y_max) {
+            interval = clearInterval(interval);
+            interval = setInterval(drawRightUp, speed);
+        }
+    }
+
+    function drawLeftDown() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBall();
+
+        x -= dx;
+        y -= dy;
+
+        if (x < x_min) {
+            interval = clearInterval(interval);
+            interval = setInterval(drawRightDown, speed);
+        }
+
+
+        if (y > y_max) {
+            interval = clearInterval(interval);
+            interval = setInterval(drawLeftUp, speed);
+        }
+    }
+
+    function drawLeftUp() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBall();
+
+        x -= dx;
+        y += dy;
+
+        if (x < x_min) {
+            interval = clearInterval(interval);
+            interval = setInterval(drawRightUp, speed);
+        }
+
+        if (y_min > y) {
+            interval = clearInterval(interval);
+            interval = setInterval(drawLeftDown, speed);
+        }
+    }
+
+    interval = setInterval(drawRightUp, speed);
+
+</script>
+</body>
+</html>

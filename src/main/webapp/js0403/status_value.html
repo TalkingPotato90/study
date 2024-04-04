@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--bootstrap 시작-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!--bootstrap 끝-->
+<style type="text/css">
+	
+</style>
+<script type="text/javascript">
+	function getChkValue(){
+		//input type="radio, checkbox"는 checked 속성으로 상태를 설정한다.
+		var frmObj=document.frm;
+		var radioGender=frmObj.gender; //name 속성이 같다면 배열로 처리된다.
+		
+		var gender="";
+		for( var i=0 ; i < radioGender.length ; i++ ){
+			//alert( radioGender[i].checked+ " / "+ radioGender[i].value)
+			if(radioGender[i].checked ){
+				gender=radioGender[i].value;
+			}//end if
+		}//end for
+		
+		if(gender == ""){
+			alert("성별은 필수 입력!!!");
+			return;	
+		}//end if
+		
+		
+		let flag=false;
+		let hobby="<ul>";
+		//1.Form Control얻기
+		let chkHobby=frmObj.hobby;
+		//2.반복시키면서
+		for(let i=0; i < chkHobby.length ; i++){
+		//3.확인된 상태가 있다면
+			if( chkHobby[i].checked ){
+				flag=true;
+			//4.값을 얻는다.
+				hobby+=`<li>${ chkHobby[i].value }</li>`;
+			}//end iif
+		}
+		if(!flag){
+			hobby+="<li>취미가 ㅇㅅㅇ</li>";
+		}//end if
+		hobby+="</ul>";
+		
+		document.getElementById("output").innerHTML=
+			`
+			선택성별 : <strong>${ gender }</strong><br>
+			취미 : ${ hobby }
+			`;
+		
+	}
+	
+	
+	function setChk(){
+		var obj2=document.frm2;
+		for(var i=0;i < obj2.mail.length ; i++){
+			obj2.mail[i].checked=obj2.flag.checked;
+		}//end for
+	}//setChk
+	
+	function getSelValue(){
+		var obj=document.frm;
+		
+		//alert( obj.mail.value+" / 선택된 옵션의 번호 : "+obj.mail.selectedIndex );//select은 하나의 name속성을 가지므로 value로 값을 얻을 수 있다.
+		if( obj.mail.selectedIndex != 0){
+		
+		
+		//1.Form Control 얻기
+		var selMail=obj.mail;
+		//2.반복
+		for( var i=0 ; i < selMail.length ; i++){
+			//alert( selMail[i].selected+  " " + selMail[i].value )
+			//3.해당 번째 Form Control의 선택상태 얻기 ( selected )
+			if( selMail[i].selected ){
+			//4. 값얻기
+				document.getElementById("output").innerHTML=
+				"<strong>"+selMail[i].value+"</strong>" ;
+				break;
+			}//end iif
+		}
+		}//end if
+		
+	}//getSelValue
+</script>
+</head>
+<body>
+<h3>name속성이 같다면 배열로 처리된다.</h3>
+<form name="frm">
+	<label>성별</label>
+	<input type="radio" name="gender" value="남자"/>남 | 	
+	<input type="radio" name="gender" value="여자"/>여
+	<br/>
+	 	
+	<label>취미</label>
+	<input type="checkbox" name="hobby" value="음악감상"/>음악감상<br/> 	
+	<input type="checkbox" name="hobby" value="영화감상"/>영화감상<br/> 	
+	<input type="checkbox" name="hobby" value="사주팔자" checked="checked"/>사주팔자<br/> 	
+	<input type="checkbox" name="hobby" value="조기축구"/>운동<br/> 	
+	<input type="checkbox" name="hobby" value="달리기"/>러닝<br/> 	
+
+	<hr>
+	<label>메일 주소 선택</label>
+	<select name="mail">
+		<option value="N/A">---메일선택---</option>
+		<option value="gmail.com">지메일</option>
+		<option value="naver.com" selected="selected">네이버메일</option>
+		<option value="hotmail.com">핫메일</option>
+		<option value="daum.net">다음메일</option>
+	</select>
+
+	<br/>
+	<input type="button" value="checked 된 값얻기" onclick="getChkValue()"/>	
+	<input type="button" value="selected 된 값얻기" onclick="getSelValue()"/>	
+</form>
+<form name="frm2">
+	
+	<table class="table table-hover" style="width: 810px;">
+	<thead>
+	<tr>
+		<th style="width: 40px;"><input type="checkbox" name="flag" onclick="setChk()"/></th>
+		<th style="width: 120px;">보낸사람</th>
+		<th style="width: 500px;">제목</th>
+		<th style="width: 150px;">수신됨</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td><input type="checkbox" name="mail"/></td>
+		<td>윤웅찬</td>
+		<td>이 편지는 영국에서부터 시작되었습니다.....</td>
+		<td>수신</td>
+	</tr>		
+	<tr>
+		<td><input type="checkbox" name="mail"/></td>
+		<td>김미영팀장</td>
+		<td>고객님 무담보로 500원까지 대출가능하십니다.</td>
+		<td>수신</td>
+	</tr>		
+	<tr>
+		<td><input type="checkbox" name="mail"/></td>
+		<td>바다이야기</td>
+		<td>푸른바다 당신도 대박가능...</td>
+		<td>수신</td>
+	</tr>		
+	<tr>
+		<td><input type="checkbox" name="mail"/></td>
+		<td>테무</td>
+		<td>호갱님께서 방금 보신 상품을 더 저렴하게 ....</td>
+		<td>수신</td>
+	</tr>	
+	</tbody>	
+	</table>
+</form>
+
+<div id="output"></div>	
+	
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--bootstrap 시작-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!--bootstrap 끝-->
+<style type="text/css">
+	#output{ color:#FF0000 }
+</style>
+<script type="text/javascript">
+	function getNameValue(){
+		//name속성으로 값을 얻을 때에는 window.document.폼이름.control명.value로 얻는다.
+		//var name=window.document.frm.name.value;
+		//var age=window.document.frm.age.value;
+		
+		//window와 document는 생략 가능
+		//var name=document.frm.name.value;
+		//var age=frm.age.value;
+		
+		var frmObj=document.frm;
+		var name=frmObj.name.value;
+		var age=frmObj.age.value;
+		
+		
+		//이름이 입력되지 않으면 "이름 필수 입력!!"을 경고창으로 보여주세요.
+		if(name == ""){
+			document.getElementById("output").innerHTML="이름은 필수 입력!!!";
+			return;
+		}//end if
+		
+		if(age == ""){
+			document.getElementById("output").innerHTML="나이는 필수 입력!!!";
+			return;
+		}//end if
+		
+		/* HTML Form Control이 id속성만 가지고 있다면 back-end에서 값을 받을 수 없다.*/
+		frmObj.submit();
+	}//getIdValue
+</script>
+</head>
+<body>
+<form action="test.jsp" name="frm">
+	<!-- HTML Form Control이 name속성을 가지면 입력값이 back-end 로 전송된다.-->
+<label>이름</label>
+<input type="text" name="name"/><br/>
+<label>나이</label>
+<input type="password" name="age"/><br/>
+<input type="button" value="입력" onclick="getNameValue()"/><br/>
+</form>
+<div id="output"></div>
+</body>
+</html>
