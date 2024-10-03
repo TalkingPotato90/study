@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .text {
+            border: 1px solid #333;
+            background-color: #FFFFFF;
+            font-weight: bold;
+            font-size: 20px;
+            width: 80px;
+            height: 30px;
+        }
+
+        .btn {
+            border: 1px solid #333;
+            background-color: #FFFFFF;
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+    <!--외부 JS를 사용할 <script> 태그 정의-->
+    <script type="text/javascript" src="external.js"></script>
+    <!-- 개발할 JS코드를 정의할 <script> 태그 정의-->
+    <script type="text/javascript">
+        function usePlus() {
+            // 외부파일 방식에서 정의된 코드를 사용
+            let num = document.getElementById("num").value;
+            let num2 = document.getElementById("num2").value;
+
+            let result = plus(num, num2);
+
+            document.getElementById("output").innerHTML = "<strong>" + result + "</strong>"
+        }
+    </script>
+
+</head>
+<body>
+<input type="text" id="num" class="text"/><Strong>+</strong>
+<input type="text" id="num2" class="text"/>
+<input type="button" class="btn" value="결과보기" onclick="usePlus()"/>
+<div id="output"></div>
+</body>
+</html>

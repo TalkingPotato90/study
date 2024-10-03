@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>size</title>
+	<style type = "text/css">
+		.size1{border : 1px solid #333;
+				width : 200px; height : 100px }
+				
+		.size2{border : 1px solid #333;
+				width : 50%; height : 70% }
+				
+		table, th, td { border : 1px solid #333}		
+		
+		/* 테이블의 td간 간격을 제어할 때 */
+		#tab{ border-spacing: 0px; }
+		th{ font-weight: normal; }
+		#numTitle{ width: 80px }
+		#nameTitle{ width: 150px }
+		#emailTitle{ width: 300px }
+		
+		#id, #pass{ width: 230px; height: 40px; border : 1px solid #dedede;
+					font-size: 25px; font-weight: bold; }
+	</style>
+</head>
+<body>
+	<!-- div : 웹브라우저의 width : 100% 기본, height : 포함하고 있는 데이터까지 -->
+	<div class = "size1">안녕<br>진수현<br>플젝은잘되나?</div>
+	<div class = "size2">안녕<br>진수현<br>플젝은잘되나?</div>
+	
+	<table id="tab">
+		<tr>
+			<th id = "numTitle">번호</th>
+			<th id = "nameTitle">이름</th>
+			<th id = "emailTitle">이메일</th>
+		</tr>
+		
+		<tr>
+			<td>1</td>
+			<td>진수현</td>
+			<td>jinsu@test.com</td>
+		</tr>
+
+		<tr>
+			<td>2</td>
+			<td>윤웅찬</td>
+			<td>chan@daum.net</td>
+		</tr>
+
+		<tr>
+			<td>3</td>
+			<td>김동섭</td>
+			<td>sub@gmail.com</td>
+		</tr>
+	</table>
+	
+	<input type ="text" name = "id" id = "id"><br>
+	<input type = "password" name = "pass" id = "pass">
+</body>
+</html>

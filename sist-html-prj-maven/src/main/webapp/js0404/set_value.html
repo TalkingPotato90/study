@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--bootstrap 시작-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <!--bootstrap 끝-->
+    <style type="text/css">
+
+    </style>
+    <script type="text/javascript">
+        function setValue() {
+            let objFrm = document.frm;
+            let name = "윤웅찬"; // 자바 스크립트에서 발생한 값
+            objFrm.txt.value = name; // txt에 설정
+            objFrm.pass.value = name;
+            console.log(objFrm.pass.value);
+            objFrm.hid.value = "경기도 수원시 영통구";
+
+            // objFrm.file.value="c:/dev/env.bat"; // 파일에는 값 설정을 할 수 없다
+            objFrm.date.value = "2024-05-14";
+            objFrm.img.src = "../common/images/img2.png"; // img는 value로 설정할 수 없다. src 속성
+        }
+
+        function setChkStatus() {
+            let objFrm = document.frm;
+            objFrm.gender[1].checked = true;
+
+            let subjectArr = objFrm.subject;
+            for (let i = 0; i < subjectArr.length; i++) {
+                subjectArr[i].checked = true;
+            }
+        }
+
+        function setSelStatus() {
+            let objFrm = document.frm;
+            // objFrm.domain[2].selected=true;
+            // if(objFrm.inputDomain.value === "네이버"){
+            //     objFrm.domain[0].selected=true;
+            // }
+            // if(objFrm.inputDomain.value === "다음"){
+            // objFrm.domain[1].selected=true;
+            // }
+            // if(objFrm.inputDomain.value === "지메일"){
+            //     objFrm.domain[2].selected=true;
+            // }
+            // if(objFrm.inputDomain.value === "핫메일"){
+            //     objFrm.domain[3].selected=true;
+            // }
+            for (let i = 0; i < objFrm.domain.length; i++) {
+                if (objFrm.inputDomain.value === objFrm.domain[i].value) {
+                    objFrm.domain[i].selected = true;
+                    return;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div>
+    <h3>HTML Form Control을 value 속성으로 값 설정</h3>
+    <!--    action 속성이 생략된 form은 submit()이 발생하면 현재페이지로 재요청을 하게된다.   -->
+    <form name="frm">
+        <label>text</label>
+        <input type="text" name="txt"/><br>
+        <label>password</label>
+        <input type="password" name="pass"/><br>
+        <label>hidden</label>
+        <input type="hidden" name="hid"/><br>
+        <label>file</label>
+        <input type="file" name="file"/><br>
+        <label>date</label>
+        <input type="date" name="date"/><br>
+        <img src="../common/images/img1.png" name="img"/><br>
+
+        <hr>
+        <input type="radio" name="gender" value="M"/>남자
+        <input type="radio" name="gender" value="M"/>여자<br>
+
+        <input type="checkbox" name="subject" value="Java"/>자바
+        <input type="checkbox" name="subject" value="Oracle"/>오라클
+        <input type="checkbox" name="subject" value="JDBC"/>JDBC
+        <input type="checkbox" name="subject" value="HTML"/>HTML
+        <input type="checkbox" name="subject" value="CSS"/>CSS<br>
+        <hr>
+        <input type="text" name="inputDomain"/>
+        <select name="domain">
+            <option value="네이버">네이버</option>
+            <option value="다음">다음</option>
+            <option value="지메일">지메일</option>
+            <option value="핫메일">핫메일</option>
+        </select>
+        <hr>
+
+        <input type="button" value="값 설정" class="btn btn-success btn-sm" onclick="setValue()"/><br>
+        <input type="button" value="check 설정" class="btn btn-info btn-sm" onclick="setChkStatus()"/><br>
+        <input type="button" value="select 설정" class="btn btn-warning btn-sm" onclick="setSelStatus()"/><br>
+    </form>
+</div>
+</body>
+</html>

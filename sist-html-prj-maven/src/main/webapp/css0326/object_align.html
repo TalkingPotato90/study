@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>object_align</title>
+	<style type = "text/css">
+		/* text-align으로 이동하지 않는 태그를 객체라고 한다.
+		-> float, margin을 사용하여 이동한다. */
+		
+		/* table{ text-align : right; } */
+		#wrap{ width : 800px; height : 400px;
+			   background-color : #BFE0AA; 
+			   margin : 0px auto; }
+			   
+		#left{ width : 300px; height : 200px; 
+			   background-color : #95A5A6;
+			   float : left; }
+			   
+		#right{ width : 300px; height : 200px; 
+			   background-color : #0879DB;
+			   float : right; }
+		
+		/* 정렬을 선언하지 않는 객체는 위의 정렬 속성을 내려받는 경우가 생길 수 있다.
+		   이 때 clear : both를 하게 되면 상위 정렬 속성을 제거할 수 있다. */
+		#bottom{ width : 500px; height : 100px;
+			   background-color : #EF573A ;
+			   float : left; }
+	</style>
+</head>
+<body>
+	<table border = "1">
+		<tr>
+			<td>진수현</td>
+		</tr>
+	</table>
+	
+	<div id = "wrap">
+		<div id = "left">left</div>
+		<div id = "right">right</div>
+		<div id = "bottom">데헷</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>class selector</title>
+	<style type = "text/css">
+		/* class selector는 .으로 시작하고, 디자인을 여러 태그가 사용해야 할 때 */
+		/* .bgcolorEven {background-color: #A8A8F2;} */
+		.bgcolorOdd {background-color: #6273E0;}
+		
+		/* multiple selector : 동일 디자인을 다양한 이름으로 사용할 때 */
+		.bgcolorEven, .temp {background-color: #A8A8F2;}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class = "bgcolorOdd">Java SE</li>
+		<li class = "bgcolorEven">Oracle DBMS</li>
+		<li class = "bgcolorOdd">JDBC</li>
+		<li class = "bgcolorEven">HTML</li>
+		<li class = "bgcolorOdd">CSS</li>
+	</ul>
+	<ul>
+		<li class = "bgcolorOdd">오늘은</li>
+		<li class = "bgcolorEven">한주의 시작</li>
+		<li class = "bgcolorOdd">월요일 입니다.</li>
+		<li class = "bgcolorEven">주말 잘 보내고</li>
+		<li class = "bgcolorOdd">찾아온 월요병</li>
+	</ul>
+	
+	<div class = "temp">오늘은 월요일</div>
+</body>
+</html>

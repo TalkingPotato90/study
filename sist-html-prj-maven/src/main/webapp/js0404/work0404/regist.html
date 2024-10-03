@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<head>
+    <title>회원가입</title>
+    <link rel="icon" href="img/favicon.ico"/>
+    <link rel="stylesheet" href="css/basic.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="css/board.css" type="text/css" media="all"/>
+    <link rel="stylesheet/less" type="text/css" href="css/pro_color.html">
+    <link rel="stylesheet" href="css/jquery.datetimepicker.css" type="text/css" media="all"/>
+    <script type="text/javascript" src="js/less.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.datetimepicker.full.js"></script>
+    <script type='text/javascript' src='js/validationBind.js'></script>
+
+    <script>
+        $(window).load(function () {
+            jQuery.datetimepicker.setLocale('ko');
+            if ($(parent.frames['mainFrame']).size() > 0) {
+            }
+        })
+    </script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'AW-11300096246');
+    </script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            inputMaxLength();
+            checkIdKr = function () {
+                if ($("#id").val() === "") {
+                    alert('아이디를 영문/숫자 5~12자 이내로 입력해주세요.');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            $('#birthday').datetimepicker({timepicker: false, format: "Y-m-d"});
+            $("#button").click(function () {
+                $('#birthday').datetimepicker('show');
+            })
+        });
+
+        function checkId() {
+            if (checkIdKr()) {
+                let id = $("#id").val();
+                alert(id);
+            }
+        }
+    </script>
+
+    <script src="js/postcode.v2.js"></script>
+
+    <script>
+        function zipcodeapi() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+
+                    var fullAddr = '';
+                    var extraAddr = '';
+
+                    if (data.userSelectedType === 'R') {
+                        fullAddr = data.roadAddress;
+
+                    } else {
+                        fullAddr = data.jibunAddress;
+                    }
+
+                    if (data.userSelectedType === 'R') {
+                        if (data.bname !== '') {
+                            extraAddr += data.bname;
+                        }
+                        if (data.buildingName !== '') {
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '');
+                    }
+
+                    $('#zipcode').val(data.zonecode);
+                    $('#addr0').val(fullAddr);
+
+                    $('#addr1').focus();
+                }
+            }).open();
+        }
+    </script>
+</head>
+<body>
+
+<div id="wrap">
+    <div class="programCon">
+        <form name="wform" id="wform" method="post">
+            <div class="writeForm">
+                <table>
+                    <colgroup>
+                        <col class="writeForm_col01"/>
+                        <col width="*"/>
+                    </colgroup>
+                    <tr>
+                        <th><label for="id">아이디</label></th>
+                        <td>
+                            <input data-value="아이디를 입력해주세요." name="id" id="id" class="inputTxt inputIdtype" type="text"
+                                   maxlength="20"/><a class="id_ch" href="javascript:checkId();">ID 중복확인</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="password">비밀번호</label></th>
+                        <td>
+                            <input data-value="비밀번호를 입력해주세요." name="password" id="password" class="inputPass size02"
+                                   type="password"/>
+                            <span class="password_ch"><label for="password2">비밀번호 확인</label></span>
+                            <input data-value="비밀번호를 입력해주세요." name="password2" id="password2"
+                                   class="inputPass size02 mmarT10" type="password"/>
+                            <span>*6~12자의 영문, 숫자, 특수문자 3가지를 조합하여 입력</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="name">이름</label></th>
+                        <td>
+                            <input data-value="이름을 입력해주세요." id="name" name="name" class="inputTxt inputName"
+                                   type="text"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label>생일</label></th>
+                        <td>
+                            <label for="birthday"></label><input type="text" name="birthday" id="birthday"
+                                                                 data-value="생년월일을 입력해 주세요."/>
+                            <span id="CalregistdateIcon">
+						<button type="button" id="button"><img src="img/calendar_icon.png"
+                                                               id="CalregistdateIconImg"
+                                                               style="cursor:pointer;"></button>
+						</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>연락처</th>
+                        <td>
+
+                            <label for="tel"></label><input type="text" name="tel" id="tel" value=""
+                                                            onkeyup="isNumberOrHyphen(this);"
+                                                            onblur="cvtUserPhoneNumber(this)" data-value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>휴대폰</th>
+                        <td>
+                            <label for="cell"></label><input type="text" name="cell" id="cell" value=""
+                                                             onkeyup="isNumberOrHyphen(this);"
+                                                             onblur="cvtUserPhoneNumber(this)"
+                                                             data-value="휴대폰 번호를 입력해주세요."/>
+
+                            <span class="label_wrap"><input type="checkbox" id="Num_check" name="issms"
+                                                            value="1"/><label for="Num_check">수신</label></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th><label>이메일</label></th>
+                        <td class="mail_type">
+                            <input data-value="이메일을 입력해주세요." name="email1" id="email1" class="inputEmail" type="text"
+                                   maxlength="100"/><span class="email_txt">@</span>
+                            <label for="email2"></label><select class="selecEmail" name="email2" id="email2"
+                                                                data-value="이메일을 선택해주세요.">
+                            <option value="">선택해주세요.</option>
+                            <option value='직접 입력'>직접 입력</option>
+                            <option value='naver.com'>naver.com</option>
+                            <option value='daum.net'>daum.net</option>
+                            <option value='gmail.com'>gmail.com</option>
+                            <option value='hotmail.com'>hotmail.com</option>
+                            <option value='nate.com'>nate.com</option>
+                            <option value='korea.com'>korea.com</option>
+                        </select>
+                            <span class="label_wrap"><input type="checkbox" id="Email_check" name="ismail"
+                                                            value="1"/><label for="Email_check">수신</label></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label>성별</label></th>
+                        <td>
+                            <input data-value="성별을 선택하세요." name="gender" type="radio" id="radio_check01"
+                                   value="1"/><label for="radio_check01">남자</label>
+                            <input name="gender" type="radio" id="radio_check02" value="2"/><label
+                                for="radio_check02">여자</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="area">소재지</label></th>
+                        <td>
+                            <select id="area" name="area">
+                                <option value="">선택해주세요.</option>
+                                <option value='1'>강원</option>
+                                <option value='2'>경기</option>
+                                <option value='3'>경남</option>
+                                <option value='4'>경북</option>
+                                <option value='5'>광주</option>
+                                <option value='6'>대구</option>
+                                <option value='7'>대전</option>
+                                <option value='8'>부산</option>
+                                <option value='9'>서울</option>
+                                <option value='10'>울산</option>
+                                <option value='11'>인천</option>
+                                <option value='12'>전남</option>
+                                <option value='13'>전북</option>
+                                <option value='14'>제주</option>
+                                <option value='15'>충남</option>
+                                <option value='16'>충북</option>
+                                <option value='17'>해외</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="zipcode">우편번호</label></th>
+                        <td>
+                            <input data-value="우편번호를 입력해주세요." type="text" class="zipcode" id="zipcode" name="zipcode"
+                                   value="" readonly="readonly" onclick="zipcodeapi();"/><a class="zip_ch"
+                                                                                            href="javascript:zipcodeapi();">우편번호검색</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="addr0">주소</label></th>
+                        <td class="addr_td">
+                            <input data-value="주소를 입력해주세요." type="text" id="addr0" class="addr" name="addr0" value=""
+                                   readonly="readonly"/><br/>
+                            <label for="addr1"></label><input data-value="상세주소를 입력해주세요." type="text" id="addr1"
+                                                              class="addr" name="addr1" value=""
+                                                              style="margin-top:7px;"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="writeForm_btn">
+                <a href="#" id="w_btn" onclick="reset();">확인</a>
+                <a href="#" onClick="reset();">취소</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

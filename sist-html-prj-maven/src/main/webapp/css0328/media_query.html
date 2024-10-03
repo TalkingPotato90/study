@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>media query</title>
+	<style type = "text/css">
+		table{border: 1px solid #333; border-spacing: 0px;}
+		th, td{border: 1px solid #333}
+		
+		/* 넓이가 800px 이하의 설정 */
+		@media screen and (max-width:800px){
+			.color{color: #FF0000;}
+			.img{display: none;}
+			#numTitle{width: 100px;}
+			#nameTitle{width: 150px;}
+		}
+		
+		/* 넓이가 800px 이상의 설정 */
+		@media screen and (min-width: 800px){
+			.color{color: #0000FF;}
+			.img{display: inline;}
+			#numTitle{width: 200px;}
+			#nameTitle{width: 300px;}
+		}
+	</style>
+</head>
+<body>
+	<div class = "color">
+		브라우저의 넓이가 800px까지면 글자의 색이 빨간색으로 변경됩니다.
+		800px 이상부터는 글자의 색이 파란색으로 변경됩니다.
+	</div>
+	
+	<div class = "img">
+		<img src = "../common/images/img.jpg">		
+	</div>
+
+	<table>
+		<tr>
+			<th id = "numTitle">번호</th>
+			<th id = "nameTitle">이름</th>
+		</tr>
+		
+		<tr>
+			<td>1</td>
+			<td>김일신</td>
+		</tr>
+
+		<tr>
+			<td>2</td>
+			<td>윤웅찬</td>
+		</tr>
+	</table>
+</body>
+</html>

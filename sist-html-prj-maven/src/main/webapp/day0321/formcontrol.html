@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML Form Control</title>
+</head>
+<body>
+	<form action = "request.jsp">
+		<fieldset>
+			<legend>HTML Form Control 연습</legend>
+				
+			<div>
+				<strong>input tag</strong>
+			</div>		
+			
+			<div>
+				<label>속성없는 태그</label> <input><br>
+				
+				<label>아이디</label>
+				<input type = "text" name = "id" id = "id" class = "id"
+						placeholder = "아이디입력" maxlength = "10" size = "10"/><br>
+				
+				<label>읽기전용</label>
+				<!-- readonly 속성이 설정된 Form Control의 값은 back-end로 전송된다. -->
+				<input type = "text" name = "read" id = "read" class = "read"
+						readonly = "readonly" value = "써봐"/><br>
+						
+				<label>비활성화</label>
+				<!-- disabled 속성이 설정된 Form Control의 값은 back-end로 전송된다. -->
+				<input type = "text" name = "read" id = "read" class = "read"
+						disabled = "disabled" value = "써봐"/><br>
+				
+				<label>비밀번호</label>
+				<input type = "password" name = "pass" id = "pass" class = "pass"
+						placeholder = "비밀번호입력" maxlength = "10" size = "4" value = "abc"/><br>
+						
+				<label>체크박스</label><br>
+				<input type = "checkbox" name = "ch" id = "ch" class = "ch"
+						value = "save"/>아이디 저장<br>
+				
+				<lael>라디오버튼</lael>	<br>
+				<!-- name 속성을 동일하게 부여하여 그룹으로 만든다. -->
+				<input type = "radio" name = "gender" id = "m" class = "m"
+						value = "m"/> <label>남자</label>
+				<input type = "radio" name = "gender" id = "f" class = "f"
+						value = "f"/> <label>여자</label><br>
+						
+				<label>히든</label><br> <!-- 숨겨진 객체 : JavaScript에서 값이 설정된다. -->
+				<input type = "hidden" name = "hid" id = "hid" value = "설정할 값"/><br>
+				
+				<label>파일</label> <!-- JavaScript이나 JSP들에서 value를 설정할 수 없다.
+				value 속성을 사용하여 value = "c:/dev/env.bat"를 설정하더라도 값이 들어가지 않는다. -->
+				<input type = "file" name = "file" id = "file" class = "file"/><br>
+				
+				<label>버튼 모양</label>
+				<input type = "button" name = "btn" id = "btn" value = "버튼"/><br>
+				
+				<label>취소 버튼</label>
+				<input type = "reset" name = "btn" id = "btn" value = "취소"/><br>
+				
+				<label>전송 버튼</label>
+				<input type = "submit" name = "btn" id = "btn" value = "전송"/><br>
+			</div>
+			
+			<div>
+				<div>
+					<strong>select</strong>
+				</div>		
+				
+				<div>
+					<!-- size 속성을 사용하면 combobox에서 List로 변환되는 효과를 얻을 수 있다. -->	
+					<select name = "email" id = "email" class = "email" size = "1">
+						<option value = "gmail.com">지메일</option>
+						<option value = "naver.com">네이버메일</option>
+						<option value = "hanmail.net">한메일</option>
+						<option value = "hotmail.com" selected = "selected">핫메일</option>
+						<option value = "nate.com">네이트메일</option>
+					</select>				
+				</div>
+			</div>
+			
+			<div>
+				<div>
+					<strong>textarea</strong>
+				</div>
+				<textarea name = "ta" id = "ta" class = "ta" rows = "5" cols = "80">
+					보여줄 문자열
+				</textarea>
+			</div>
+		</fieldset>
+	</form>
+</body>
+</html>
